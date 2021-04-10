@@ -14,4 +14,9 @@ public class TesteController {
         mv.addObject("titulo", "Tá pegando fogo, bicho!");
         return mv;
     }
+
+    @RequestMapping(value = "/tela1", method = RequestMethod.GET)
+    public String telaExemplo1() {
+        return "tela1";
+    }
 }
