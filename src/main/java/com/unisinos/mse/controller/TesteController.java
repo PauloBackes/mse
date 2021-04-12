@@ -11,7 +11,7 @@ public class TesteController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView homePage() {
         ModelAndView mv = new ModelAndView("home");
-        mv.addObject("titulo", "Tá pegando fogo, bicho!");
+        mv.addObject("titulo", "Sai do meu colo, bicho!");
         return mv;
     }
 
