@@ -21,17 +21,17 @@ public class TesteController {
     }
 
     @RequestMapping(value = "/cirurgias", method = RequestMethod.GET)
-    public String telaExemplo1() {
+    public String telaExemplo2() {
         return "cirurgias";
     }
 
     @RequestMapping(value = "/equipamentos", method = RequestMethod.GET)
-    public String telaExemplo1() {
+    public String telaExemplo3() {
         return "equipamentos";
     }
 
     @RequestMapping(value = "/materiais", method = RequestMethod.GET)
-    public String telaExemplo1() {
+    public String telaExemplo4() {
         return "materiais";
     }
 }
