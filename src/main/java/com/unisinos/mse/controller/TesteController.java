@@ -19,4 +19,9 @@ public class TesteController {
     public String telaExemplo1() {
         return "tela1";
     }
+
+    @RequestMapping(value = "/paulo", method = RequestMethod.GET)
+    public String telaExemplo1() {
+        return "cirurgia";
+    }
 }
