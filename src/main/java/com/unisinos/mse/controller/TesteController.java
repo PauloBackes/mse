@@ -22,6 +22,11 @@ public class TesteController {
 
     @RequestMapping(value = "/paulo", method = RequestMethod.GET)
     public String telaExemplo1() {
-        return "cirurgia";
+        return "cirurgias";
+    }
+
+    @RequestMapping(value = "/paulo2", method = RequestMethod.GET)
+    public String telaExemplo1() {
+        return "equipamentos";
     }
 }
