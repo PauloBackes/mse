@@ -20,13 +20,18 @@ public class TesteController {
         return "tela1";
     }
 
-    @RequestMapping(value = "/paulo", method = RequestMethod.GET)
+    @RequestMapping(value = "/cirurgias", method = RequestMethod.GET)
     public String telaExemplo1() {
         return "cirurgias";
     }
 
-    @RequestMapping(value = "/paulo2", method = RequestMethod.GET)
+    @RequestMapping(value = "/equipamentos", method = RequestMethod.GET)
     public String telaExemplo1() {
         return "equipamentos";
+    }
+
+    @RequestMapping(value = "/materiais", method = RequestMethod.GET)
+    public String telaExemplo1() {
+        return "materiais";
     }
 }
