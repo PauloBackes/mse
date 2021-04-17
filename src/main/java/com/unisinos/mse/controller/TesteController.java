@@ -10,7 +10,7 @@ public class TesteController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView homePage() {
-        ModelAndView mv = new ModelAndView("home");
+        ModelAndView mv = new ModelAndView("cirurgias");
         mv.addObject("titulo", "Sai do meu colo, bicho!");
         return mv;
     }

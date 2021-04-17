@@ -9,7 +9,7 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,9 +22,9 @@
     <!-- Navegação -->
       <nav class="navbar navbar-default">
         <div class="container">
-          
+
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" 
+            <button type="button" class="navbar-toggle collapsed"
                     data-toggle="collapse" data-target="#barra-navegacao">
                       <span class="sr-only"> Alternar Menu</span>
                       <span class="icon-bar"></span>
@@ -32,9 +32,9 @@
                       <span class="icon-bar"></span>
                     </button>
             <a href="#" class="navbar-brand">LOGO</a>
-          </div> 
+          </div>
 
-          <div class="collapse navbar-collapse" id="barra-navegacao">     
+          <div class="collapse navbar-collapse" id="barra-navegacao">
 
           <div>
             <ul class="nav navbar-nav navbar-right">
@@ -71,17 +71,23 @@
       </nav>
 
     <div class="container">
-      
+
       <div class="page-header">
         <h1>Cirurgias</h1>
       </div>
 
-      <div class="input-group mb-3">
-        <input type="text" class="form-group" placeholder="Pesquisar" aria-label="Pesquisar" aria-describedby="button-addon2">
-        <button class="btn btn-outline-secondary" type="button" id="search">Pesquisar</button>
-      </div>
-
-      <table class="table table-striped table-bordered table-hover table-condensed">
+      <form>
+        <div class="input-group col-sm-5">
+            <input type="text" class="form-control" placeholder="Pesquisar">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </div>
+        </div>
+      </form>
+      <br/>
+      <table class="table table-hover">
           <thead>
             <tr>
                 <th> Sala </th>
@@ -119,6 +125,7 @@
 
           </tbody>
       </table>
+
     <form class="modal fade" id="det1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -136,16 +143,17 @@
                     <ul class="list-group">
                         <h4>Equipamentos</h4>
                         <li class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                            Desfibrilador
+                            <input class="form-check-input me-1" type="checkbox" id="idDesfibrilador" value="" aria-label="...">
+                            <label for="idDesfibrilador"> Desfibrilador</label>
                         </li>
                         <li class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                            Intensificador de imagem
+                            <input class="form-check-input me-1" type="checkbox" id="idIntensificadorDeImagem" value="" aria-label="...">
+                            <label for="idIntensificadorDeImagem"> Intensificador de imagem</label>
+
                         </li>
                         <li class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                            Bisturi
+                            <input class="form-check-input me-1" type="checkbox" id="idBisturi" value="" aria-label="...">
+                            <label for="idBisturi"> Bisturi</label>
                         </li>
                     </ul>
                             </div>
@@ -153,16 +161,16 @@
                     <ul class="list-group">
                         <h4>Materiais</h4>
                         <li class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                            Algodão
+                            <input class="form-check-input me-1" type="checkbox" id="idAlgodao" value="" aria-label="...">
+                            <label for="idAlgodao">Algodão</label>
                             </li>
                         <li class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                            Agulha
+                            <input class="form-check-input me-1" type="checkbox" id="idAgulha" value="" aria-label="...">
+                            <label for="idAgulha">Agulha</label>
                         </li>
                         <li class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                            Termometro
+                            <input class="form-check-input me-1" type="checkbox" id="idTermometro" value="" aria-label="...">
+                            <label for="idTermometro">Termometro</label>
                         </li>
                     </ul>
                             </div>
@@ -182,7 +190,7 @@
         </div>
     </form>
 
-    </div>    
+    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
