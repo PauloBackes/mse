@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,7 +16,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Cirurgia {
     @Id
     private String id;
-    private Equipamento equi;
-    private String nome;
-    private String descricao;
+    private String nomeCirurgia;
+    @Field("equipamentos")
+    private Equipamento equipamento;
+    @Field("materiais")
+    private Material material;
+    //private String descricao;
 }
