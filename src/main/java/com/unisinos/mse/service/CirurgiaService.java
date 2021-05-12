@@ -1,9 +1,19 @@
 package com.unisinos.mse.service;
 
+import com.unisinos.mse.model.Cirurgia;
+import com.unisinos.mse.repository.CirurgiaRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+import java.util.List;
+
+@Service
 @AllArgsConstructor
 public class CirurgiaService {
+
+    CirurgiaRepository cirurgiaRepository;
+
+    public List<Cirurgia> findAllCirurgias() {
+        return cirurgiaRepository.findAll();
+    }
 }

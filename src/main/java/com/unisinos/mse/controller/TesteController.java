@@ -1,8 +1,7 @@
 package com.unisinos.mse.controller;
 
-import com.unisinos.mse.repository.CirurgiaRepository;
+import com.unisinos.mse.service.CirurgiaService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,13 +11,14 @@ import org.springframework.web.servlet.ModelAndView;
 @AllArgsConstructor
 public class TesteController {
 
-    CirurgiaRepository cirurgiaRepository;
+
+    CirurgiaService cirurgiaService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView homePage() {
         try {
-            Integer a = 12;
-            var t = cirurgiaRepository.findAll();
+            var t2 = cirurgiaService.findAllCirurgias();
+            Integer a = 90;
         } catch (Exception e) {
             e.printStackTrace();
         }

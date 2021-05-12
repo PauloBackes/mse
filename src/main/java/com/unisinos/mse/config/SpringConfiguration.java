@@ -1,14 +1,54 @@
 package com.unisinos.mse.config;
 
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.Arrays;
 
 @Configuration
 public class SpringConfiguration {
 
-    @Bean
-    public void mongoDatabase() {
+    /*@Bean
+    public MongoClient t() {
+        //"mongodb+srv://mse:mse@cluster0.qdcyn.mongodb.net/test?retryWrites=true&w=majority"
 
+*//*        MongoClient mongoClient = MongoClients
+                .create("mongodb://user:mypassword@cluster0-shard-00-00-ox90k.mongodb.net:27017,cluster0-shard-00-01-ox90k.mongodb.net:27017,cluster0-shard-00-02-ox90k.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&maxIdleTimeMS=5000");*//*
+        MongoClient mongoClient = MongoClients
+                .create("mongodb://mse:mse@cluster0-shard-00-00.qdcyn.mongodb.net:27017,cluster0-shard-00-01.qdcyn.mongodb.net:27017,cluster0-shard-00-02.qdcyn.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&maxIdleTimeMS=5000");
+
+        return mongoClient;
+    }*/
+
+    /*public DB mongoDatabase() {
+
+
+
+            MongoClientOptions.Builder builder = new MongoClientOptions.Builder();
+            //build the connection options
+            builder.maxConnectionIdleTime(60000);//set the max wait time in (ms)
+            MongoClientOptions opts = builder.build();
+
+
+            char[] password2 = "mypassword".toCharArray();
+
+            MongoCredential credential2 = MongoCredential.createCredential("username", "databasename",password2);
+
+
+            //add your option to the connection
+
+            MongoClient mongoClient = new MongoClient(new ServerAddress("server ip",27017), Arrays.asList(credential2),opts);
+            //use your database
+            cachedDb = mongoClient.getDB("databasename");
+
+            return cachedDb;
+
+        }
+*/
        /* ConnectionString connectionString = new ConnectionString("mongodb+srv://mse:mse@cluster0.qdcyn.mongodb.net/test?authSource=admin&authMechanism=SCRAM-SHA-1");
         MongoClientSettings settings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
@@ -65,5 +105,5 @@ public class SpringConfiguration {
         return MongoClients.create(settings);*/
 
 
-    }
+
 }
