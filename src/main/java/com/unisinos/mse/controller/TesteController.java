@@ -1,5 +1,7 @@
 package com.unisinos.mse.controller;
 
+import com.unisinos.mse.model.Cirurgia;
+import com.unisinos.mse.repository.CirurgiaRepository;
 import com.unisinos.mse.service.CirurgiaService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,7 +20,7 @@ public class TesteController {
     public ModelAndView homePage() {
         try {
             var t2 = cirurgiaService.findAllCirurgias();
-            Integer a = 90;
+           Integer a = 10;
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -10,8 +10,6 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class Equipamento {
-    private String nome;
+    private String descricao;
     private String patrimonio;
-    //private TipoEquipamento tipo;
-    //private int quantidade;
 }
