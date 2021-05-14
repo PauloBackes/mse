@@ -13,7 +13,11 @@ public class CirurgiaService {
 
     CirurgiaRepository cirurgiaRepository;
 
-    public List<Cirurgia> findAllCirurgias() {
+    public List<Cirurgia> buscarTodasCirurgias() {
         return cirurgiaRepository.findAll();
+    }
+
+    public Cirurgia buscarCirurgiaPeloId(String id) {
+        return cirurgiaRepository.findCirurgiaById(id);
     }
 }

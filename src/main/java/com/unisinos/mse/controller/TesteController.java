@@ -1,7 +1,5 @@
 package com.unisinos.mse.controller;
 
-import com.unisinos.mse.model.Cirurgia;
-import com.unisinos.mse.repository.CirurgiaRepository;
 import com.unisinos.mse.service.CirurgiaService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,14 +16,12 @@ public class TesteController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView homePage() {
-        try {
-            var t2 = cirurgiaService.findAllCirurgias();
-           Integer a = 10;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        var cirurgias = cirurgiaService.buscarTodasCirurgias();
+
         ModelAndView mv = new ModelAndView("cirurgias");
         mv.addObject("titulo", "Sai do meu colo, bicho!");
+        mv.addObject("listaCirurgias", cirurgias);
         return mv;
     }
 
@@ -35,17 +31,29 @@ public class TesteController {
     }
 
     @RequestMapping(value = "/cirurgias", method = RequestMethod.GET)
-    public String telaExemplo2() {
-        return "cirurgias";
+    public ModelAndView telaExemplo2() {
+        var cirurgias = cirurgiaService.buscarTodasCirurgias();
+        ModelAndView mv = new ModelAndView("cirurgias");
+        mv.addObject("titulo", "Sai do meu colo, bicho!");
+        mv.addObject("listaCirurgias", cirurgias);
+        return mv;
     }
 
     @RequestMapping(value = "/equipamentos", method = RequestMethod.GET)
-    public String telaExemplo3() {
-        return "equipamentos";
+    public ModelAndView telaExemplo3() {
+        var cirurgia = cirurgiaService.buscarCirurgiaPeloId("6093064ec6a4f928997c356c");
+        ModelAndView mv = new ModelAndView("equipamentos");
+        mv.addObject("titulo", "Sai do meu colo, bicho!");
+        mv.addObject("listaEquipamentos", cirurgia.getEquipamento());
+        return mv;
     }
 
     @RequestMapping(value = "/materiais", method = RequestMethod.GET)
-    public String telaExemplo4() {
-        return "materiais";
+    public ModelAndView telaExemplo4() {
+        var cirurgia = cirurgiaService.buscarCirurgiaPeloId("6093064ec6a4f928997c356c");
+        ModelAndView mv = new ModelAndView("materiais");
+        mv.addObject("titulo", "Sai do meu colo, bicho!");
+        mv.addObject("listaMateriais", cirurgia.getMaterial());
+        return mv;
     }
 }

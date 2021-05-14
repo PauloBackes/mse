@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class Equipamento {
     private String descricao;
     private String patrimonio;
+    private String codigo;
 }

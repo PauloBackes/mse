@@ -11,4 +11,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Material {
     private String descricao;
+    private String codigo;
+    private Integer quantidade;
 }

@@ -8,20 +8,22 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
 @Document(collection = "cirurgia")
-public class Cirurgia {
+public class Cirurgia implements Serializable {
     @Id
     private String id;
     private String descricao;
     private LocalDateTime data;
     @Field("equipamentos")
-    private Equipamento equipamento;
+    private List<Equipamento> equipamento;
     @Field("materiais")
-    private Material material;
+    private List<Material> material;
 }
