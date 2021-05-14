@@ -1,27 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
+<head th:fragment="cabecalho">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Equipamentos</title>
-
-    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="../css/style.css"/>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <title>MSE</title>
 </head>
+
 <body>
 <!-- Navegação -->
-<nav class="navbar navbar-default">
+<nav th:fragment="menu" class="navbar navbar-default">
     <div class="container">
 
         <div class="navbar-header">
@@ -32,15 +25,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="home.html" class="navbar-brand">LOGO</a>
+            <a href="#" class="navbar-brand">LOGO</a>
         </div>
-
         <div class="collapse navbar-collapse" id="barra-navegacao">
-
             <div>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="home.html">Inicio</a></li>
-                    <li><a href="cirurgias.html">Cirurgias</a></li>
+                    <li><a href="#">Cirurgias</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             Relatórios<span class="caret"></span>
@@ -71,47 +62,13 @@
     </div>
 </nav>
 
-<div class="container">
-
-    <div class="page-header">
-        <h1>Equipamentos</h1>
-    </div>
-
-    <div class="input-group mb-3">
-        <input type="text" class="form-group" placeholder="Pesquisar" aria-label="Pesquisar"
-               aria-describedby="button-addon2">
-        <button class="btn btn-outline-secondary" type="button" id="search">Pesquisar</button>
-    </div>
-
-    <table class="table table-striped table-bordered table-hover table-condensed">
-        <thead>
-        <tr>
-            <th> ID</th>
-            <th> Descrição</th>
-            <th> Patrimonio</th>
-            <th> Ações</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="equipamento: ${listaEquipamentos}">
-            <td th:text="${equipamento.codigo}"/>
-            <td th:text="${equipamento.descricao}"/>
-            <td th:text="${equipamento.patrimonio}"/>
-            <td>
-                <button class="btn btn-default">Editar <span class="glyphicon glyphicon-pencil"></span></button>
-                <button class="btn btn-danger">Excluir <span class="glyphicon glyphicon-trash"></span></button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
-
-</div>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+<footer th:fragment="rodape">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+</footer>
 </body>
 </html>
