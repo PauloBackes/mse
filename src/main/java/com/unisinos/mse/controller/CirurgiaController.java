@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @AllArgsConstructor
-public class TesteController {
+public class CirurgiaController {
 
 
     CirurgiaService cirurgiaService;
