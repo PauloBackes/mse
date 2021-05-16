@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @AllArgsConstructor
-public class TesteController {
+public class CirurgiaController {
 
 
     CirurgiaService cirurgiaService;
@@ -39,21 +39,4 @@ public class TesteController {
         return mv;
     }
 
-    @RequestMapping(value = "/equipamentos", method = RequestMethod.GET)
-    public ModelAndView telaExemplo3() {
-        var cirurgia = cirurgiaService.buscarCirurgiaPeloId("6093064ec6a4f928997c356c");
-        ModelAndView mv = new ModelAndView("equipamentos");
-        mv.addObject("titulo", "Sai do meu colo, bicho!");
-        mv.addObject("listaEquipamentos", cirurgia.getEquipamento());
-        return mv;
-    }
-
-    @RequestMapping(value = "/materiais", method = RequestMethod.GET)
-    public ModelAndView telaExemplo4() {
-        var cirurgia = cirurgiaService.buscarCirurgiaPeloId("6093064ec6a4f928997c356c");
-        ModelAndView mv = new ModelAndView("materiais");
-        mv.addObject("titulo", "Sai do meu colo, bicho!");
-        mv.addObject("listaMateriais", cirurgia.getMaterial());
-        return mv;
-    }
-}
+  }
