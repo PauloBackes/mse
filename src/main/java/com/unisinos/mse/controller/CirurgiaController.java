@@ -19,15 +19,16 @@ public class CirurgiaController {
 
         var cirurgias = cirurgiaService.buscarTodasCirurgias();
 
-        ModelAndView mv = new ModelAndView("cirurgias");
+        ModelAndView mv = new ModelAndView("home");
         mv.addObject("titulo", "Sai do meu colo, bicho!");
         mv.addObject("listaCirurgias", cirurgias);
         return mv;
     }
 
-    @RequestMapping(value = "/tela1", method = RequestMethod.GET)
-    public String telaExemplo1() {
-        return "tela1";
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public ModelAndView telaLogin() {
+        ModelAndView mv = new ModelAndView("login");
+        return mv;
     }
 
     @RequestMapping(value = "/cirurgias", method = RequestMethod.GET)

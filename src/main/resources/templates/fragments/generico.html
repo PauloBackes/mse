@@ -25,13 +25,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="#" class="navbar-brand">LOGO</a>
+            <a th:href="@{/}" class="navbar-brand">LOGO</a>
         </div>
+
         <div class="collapse navbar-collapse" id="barra-navegacao">
+
             <div>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="home.html">Inicio</a></li>
-                    <li><a href="#">Cirurgias</a></li>
+                    <li><a th:href="@{/}" >Inicio</a></li>
+                    <li><a th:href="@{/cirurgias}">Cirurgias</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             Relatórios<span class="caret"></span>
@@ -49,11 +51,11 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Salas</a></li>
-                            <li><a href="materiais.html">Materias</a></li>
-                            <li><a href="equipamentos.html">Equipamentos</a></li>
+                            <li><a th:href="@{/materiais}">Materias</a></li>
+                            <li><a th:href="@{/equipamentos}">Equipamentos</a></li>
                         </ul>
                     </li>
-                    <li><a href="login.html">Sair</a></li>
+                    <li><a th:href="@{/login}">Sair</a></li>
                 </ul>
                 </li>
                 </ul>
@@ -61,6 +63,7 @@
         </div>
     </div>
 </nav>
+
 
 <footer th:fragment="rodape">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
