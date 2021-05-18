@@ -40,4 +40,10 @@ public class CirurgiaController {
         return mv;
     }
 
+    @RequestMapping(value = "/editar/cirurgia", method = RequestMethod.GET)
+    public ModelAndView telaEdicaoCirurgia() {
+        ModelAndView mv = new ModelAndView("editarCirurgia");
+        return mv;
+    }
+
   }
