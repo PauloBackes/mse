@@ -1,88 +1,90 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
 <!-- Header -->
-        <head th:insert="fragments/generico.html :: cabecalho">
+<head th:insert="fragments/generico.html :: cabecalho">
 
-    <body>
+<body>
 <!-- Navegação -->
-        <nav th:replace="fragments/generico.html :: menu"></nav>
+<nav th:replace="fragments/generico.html :: menu"></nav>
 
-        <div class="container">
+<div class="container">
 
-            <div class="page-header">
-                <h1>Checklist</h1>
-            </div>
+    <div class="page-header">
+        <h1>Checklist</h1>
+    </div>
 
-            <div class="col-md-6">
-                <h4>Cirurgia: Transplante de pulmão</h4>
-                <h4>Horário previsto para início: 14:00hs</h4>
-            </div>
-            <div class="col-md-6">
-                <h4>Dia: 18/05/2021         Sala: 200</h4>
-                <h4>Horário previsto para término: 15:30hs</h4>
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h4>Equipamentos</h4>
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <input type="checkbox" style="margin-right: 10px">Desfibrilador</li>
-                            <li class="list-group-item">
-                                <input type="checkbox" style="margin-right: 10px">Intensificador de imagem</li>
-                            <li class="list-group-item">
-                                <input type="checkbox" style="margin-right: 10px">Bisturi</li>
-                            <li class="list-group-item">
-                                <input type="checkbox" style="margin-right: 10px">Respirador</li>
-                            <li class="list-group-item">
-                                <input type="checkbox" style="margin-right: 10px">Sugador</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <h4>Materiais</h4>
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <input type="checkbox" style="margin-right: 10px">Algodão</li>
-                            <li class="list-group-item">
-                                <input type="checkbox" style="margin-right: 10px">Agulha</li>
-                            <li class="list-group-item">
-                                <input type="checkbox" style="margin-right: 10px">Termometro</li>
-                            <li class="list-group-item">
-                                <input type="checkbox" style="margin-right: 10px">Tesoura</li>
-                            <li class="list-group-item">
-                                <input type="checkbox" style="margin-right: 10px">Linha</li>
-                        </ul>
+    <div class="col-md-6">
+        <h4 th:inline="text">Cirurgia: [[${cirurgia.descricao}]]</h4>
+        <h4 th:inline="text">Horário previsto para início: [[${cirurgia.horaInicio}]]</h4>
+    </div>
+    <div class="col-md-6">
+        <h4 th:inline="text">Dia: [[${cirurgia.data}]]</h4>
+        <h4 th:inline="text">Sala: [[${cirurgia.sala}]]</h4>
+        <h4 th:inline="text">Horário previsto para término: [[${cirurgia.horaTermino}]]</h4>
+    </div>
+
+    <!--TODO ainda preciso fazer isso funcionar - Não apagar
+    <div class="container-fluid">
+        <div class="row">
+            <form th:action="@{/atualizar/cirurgia}" th:object="${cirurgia}" method="post">
+                <div class="col-md-6">
+                    <div th:each="equipamento: ${cirurgia.equipamento}" class="form-check">
+                        <input type="checkbox" style="margin-right: 10px" th:id="${equipamento.descricao}">
+                        <label th:for="${equipamento.descricao}" th:text="${equipamento.descricao}" th:field="*{descricao}"/>
                     </div>
                 </div>
-            </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                        Cancelar
-                    </button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#salvar">
-                        Atualizar
-                    </button>
-                </div>
-
-            <form class="modal fade" id="salvar">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>Salvo com sucesso</h4>
-                        </div>
-                        <div class="modal-body">
-                            <h5>Seu registro foi salvo com sucesso</h5>
-                        </div>
-                        <div class="modal-footer">
-                            <a th:href="@{/cirurgias}" type="button" class="btn btn-primary" data-dismiss="modal">
-                                Fechar
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <button type="submit" class="btn btn-default">Atualizar</button>
             </form>
         </div>
-        <footer th:replace="fragments/generico.html :: rodape"></footer>
-    </body>
+    </div>-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Equipamentos</h4>
+                <ul class="list-group">
+                    <li th:each="equipamento: ${cirurgia.equipamento}" class="list-group-item ">
+                        <input type="checkbox" style="margin-right: 10px" th:id="${equipamento.descricao}">
+                        <label th:for="${equipamento.descricao}" th:text="${equipamento.descricao}"/>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h4>Materiais</h4>
+                <ul class="list-group">
+                    <li th:each="material: ${cirurgia.material}" class="list-group-item ">
+                        <input type="checkbox" style="margin-right: 10px" th:id="${material.descricao}">
+                        <label th:for="${material.descricao}" th:text="${material.descricao}"/>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <a th:href="@{/cirurgias}" class="btn btn-default" role="button">Cancelar</a>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#salvar">
+            Atualizar
+        </button>
+    </div>
+
+    <form class="modal fade" id="salvar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Salvo com sucesso</h4>
+                </div>
+                <div class="modal-body">
+                    <h5>Seu registro foi salvo com sucesso</h5>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal">
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<footer th:replace="fragments/generico.html :: rodape"></footer>
+</body>
 </html>

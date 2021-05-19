@@ -42,64 +42,20 @@
             <td th:text="${cirurgia.descricao}"/>
             <td>12/06/2021 11:00</td>
             <td>12/06/2021 12:30</td>
-            <td> <a th:href="@{/edicao}" class="btn btn-default" role="button">Editar </a>
-                <button class="btn btn-default" data-toggle="modal" data-target="#det1">Detalhes
+            <td>
+                <a th:href="@{/editar/cirurgia}" class="btn btn-default" role="button">Editar
                     <span class="glyphicon glyphicon-th-list"></span>
-                </button>
+                </a>
+                <a th:href="@{/validar/cirurgia?id={id} (id=${cirurgia.getId})}" class="btn btn-default" role="button">Validar
+                    <span class="glyphicon glyphicon-th-list"></span>
+                </a>
+                <a href="#" class="btn btn-default" role="button">Excluir
+                    <span class="glyphicon glyphicon-th-list"></span>
+                </a>
             </td>
         </tr>
         </tbody>
     </table>
-
-    <form class="modal fade" id="det1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-                    <h4 class="modal-title">Detalhes Cirurgia</h4>
-                </div>
-
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h4>Equipamentos</h4>
-                                <ul class="list-group">
-                                    <li class="list-group-item">Desfibrilador</li>
-                                    <li class="list-group-item">Intensificador de imagem</li>
-                                    <li class="list-group-item">Bisturi</li>
-                                    <li class="list-group-item">Respirador</li>
-                                    <li class="list-group-item">Sugador</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <h4>Materiais</h4>
-                                <ul class="list-group">
-                                    <li class="list-group-item">Algodão</li>
-                                    <li class="list-group-item">Agulha</li>
-                                    <li class="list-group-item">Termometro</li>
-                                    <li class="list-group-item">Tesoura</li>
-                                    <li class="list-group-item">Linha</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                        Cancelar
-                    </button>
-                    <button type="button" class="btn btn-primary">
-                        Atualizar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </form>
-
 </div>
 
 <footer th:replace="fragments/generico.html :: rodape"></footer>

@@ -1,5 +1,6 @@
 package com.unisinos.mse.service;
 
+import com.unisinos.mse.mapper.CirurgiaMapper;
 import com.unisinos.mse.model.Cirurgia;
 import com.unisinos.mse.repository.CirurgiaRepository;
 import lombok.AllArgsConstructor;
@@ -14,10 +15,10 @@ public class CirurgiaService {
     CirurgiaRepository cirurgiaRepository;
 
     public List<Cirurgia> buscarTodasCirurgias() {
-        return cirurgiaRepository.findAll();
+        return CirurgiaMapper.mapToCirurgiaList(cirurgiaRepository.findAll());
     }
 
     public Cirurgia buscarCirurgiaPeloId(String id) {
-        return cirurgiaRepository.findCirurgiaById(id);
+        return CirurgiaMapper.mapToCirurgia(cirurgiaRepository.findCirurgiaById(id));
     }
 }
