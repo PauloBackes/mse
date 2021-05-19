@@ -60,10 +60,28 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">
                         Cancelar
                     </button>
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#salvar">
                         Atualizar
                     </button>
                 </div>
+
+            <form class="modal fade" id="salvar">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>Salvo com sucesso</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h5>Seu registro foi salvo com sucesso</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <a th:href="@{/cirurgias}" type="button" class="btn btn-primary" data-dismiss="modal">
+                                Fechar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
         <footer th:replace="fragments/generico.html :: rodape"></footer>
     </body>
