@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<!-- Header -->
+        <head th:insert="fragments/generico.html :: cabecalho">
+
+    <body>
+<!-- Navegação -->
+        <nav th:replace="fragments/generico.html :: menu"></nav>
+
+        <div class="container">
+
+            <div class="page-header">
+                <h1>Checklist</h1>
+            </div>
+
+            <div class="col-md-6">
+                <h4>Cirurgia: Transplante de pulmão</h4>
+                <h4>Horário previsto para início: 14:00hs</h4>
+            </div>
+            <div class="col-md-6">
+                <h4>Dia: 18/05/2021         Sala: 200</h4>
+                <h4>Horário previsto para término: 15:30hs</h4>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Equipamentos</h4>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <input type="checkbox" style="margin-right: 10px">Desfibrilador</li>
+                            <li class="list-group-item">
+                                <input type="checkbox" style="margin-right: 10px">Intensificador de imagem</li>
+                            <li class="list-group-item">
+                                <input type="checkbox" style="margin-right: 10px">Bisturi</li>
+                            <li class="list-group-item">
+                                <input type="checkbox" style="margin-right: 10px">Respirador</li>
+                            <li class="list-group-item">
+                                <input type="checkbox" style="margin-right: 10px">Sugador</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Materiais</h4>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <input type="checkbox" style="margin-right: 10px">Algodão</li>
+                            <li class="list-group-item">
+                                <input type="checkbox" style="margin-right: 10px">Agulha</li>
+                            <li class="list-group-item">
+                                <input type="checkbox" style="margin-right: 10px">Termometro</li>
+                            <li class="list-group-item">
+                                <input type="checkbox" style="margin-right: 10px">Tesoura</li>
+                            <li class="list-group-item">
+                                <input type="checkbox" style="margin-right: 10px">Linha</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        Atualizar
+                    </button>
+                </div>
+        </div>
+        <footer th:replace="fragments/generico.html :: rodape"></footer>
+    </body>
+</html>
