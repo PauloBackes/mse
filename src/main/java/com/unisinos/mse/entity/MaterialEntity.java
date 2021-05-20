@@ -13,4 +13,5 @@ public class MaterialEntity {
     private String descricao;
     private String codigo;
     private Integer quantidade;
+    private Boolean validado;
 }

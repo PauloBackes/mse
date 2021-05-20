@@ -20,6 +20,7 @@ import java.util.List;
 public class CirurgiaEntity implements Serializable {
     @Id
     private String id;
+    private Boolean ativo;
     private String descricao;
     private String sala;
     private LocalDateTime dataInicio;

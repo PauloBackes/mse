@@ -23,6 +23,7 @@ public class CirurgiaMapper {
                         .horaTermino(FormatadorDataHora.formatarHora(cirurgia.getDataFim()))
                         .equipamento(EquipamentoMapper.mapToEquipamentoList(cirurgiaEntity.getEquipamento()))
                         .material(MaterialMapper.mapToMaterialList(cirurgiaEntity.getMaterial()))
+                        .ativo(cirurgia.getAtivo())
                         .build())
                 .orElse(null);
     }

@@ -13,4 +13,5 @@ public class EquipamentoEntity {
     private String descricao;
     private String patrimonio;
     private String codigo;
+    private Boolean validado;
 }

@@ -24,6 +24,7 @@ public class EquipamentoMapper {
                 .descricao(equipamentoEntity.getDescricao())
                 .patrimonio(equipamentoEntity.getPatrimonio())
                 .codigo(equipamentoEntity.getCodigo())
+                .validado(equipamentoEntity.getValidado())
                 .build();
     }
 }

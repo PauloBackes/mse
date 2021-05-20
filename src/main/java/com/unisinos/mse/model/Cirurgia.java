@@ -13,6 +13,7 @@ import java.util.List;
 @Builder
 public class Cirurgia {
     private String id;
+    private Boolean ativo;
     private String sala;
     private String descricao;
     private String data;
@@ -20,4 +21,5 @@ public class Cirurgia {
     private String horaTermino;
     private List<Equipamento> equipamento;
     private List<Material> material;
+    private String[] checkbox;
 }

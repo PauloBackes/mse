@@ -23,6 +23,7 @@ public class MaterialMapper {
                 .descricao(materialEntity.getDescricao())
                 .codigo(materialEntity.getCodigo())
                 .quantidade(materialEntity.getQuantidade())
+                .validado(materialEntity.getValidado())
                 .build();
     }
 }
