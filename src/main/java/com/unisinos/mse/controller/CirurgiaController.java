@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @AllArgsConstructor
@@ -50,10 +51,8 @@ public class CirurgiaController {
     }
 
     @RequestMapping(value = "/validar/cirurgia", method = RequestMethod.GET)
-    public ModelAndView telaChecklist(String id) {
+    public ModelAndView telaChecklist(@RequestParam(value = "id") String id) {
         var cirurgia = cirurgiaService.buscarCirurgiaPeloId(id);
-        cirurgia.setCheckbox(new String[] {"Monday", "Tuesday", "Wednesday", "Thursday",
-                "Friday", "Saturday", "Sunday"});
         ModelAndView mv = new ModelAndView("checklist");
         mv.addObject("cirurgia", cirurgia);
         mv.addObject("equipamentos", cirurgia.getEquipamento());
@@ -63,16 +62,17 @@ public class CirurgiaController {
 
     @RequestMapping(value = "/atualizar/cirurgia", method = RequestMethod.POST)
     public ModelAndView atualizarInstrumentosValidadosCirurgia(@ModelAttribute Cirurgia cirurgia,
-                                                       @RequestParam(value = "equipamentosSelecionados" , required = false) String[] equipamentosSelecionados,
-                                                       @RequestParam(value = "materiaisSelecionados" , required = false) String[] materiaisSelecionados,
-                                                       @RequestParam(value = "idCirurgia") String idCirurgia) {
+                                                               @RequestParam(value = "equipamentosSelecionados", required = false) String[] equipamentosSelecionados,
+                                                               @RequestParam(value = "materiaisSelecionados", required = false) String[] materiaisSelecionados,
+                                                               @RequestParam(value = "idCirurgia") String idCirurgia,
+                                                               RedirectAttributes redirectAttributes) {
 
         var cirurgiaAtualizada = cirurgiaService.atualizarInstrumentosValidados(idCirurgia, equipamentosSelecionados, materiaisSelecionados);
-        ModelAndView mv = new ModelAndView("checklist");
-        mv.addObject("cirurgia", cirurgiaAtualizada);
-        mv.addObject("equipamentos", cirurgiaAtualizada.getEquipamento());
-        mv.addObject("materiais", cirurgiaAtualizada.getMaterial());
+        redirectAttributes.addFlashAttribute("message", "Atualizado com sucesso");
+
+        ModelAndView mv = new ModelAndView("redirect:/validar/cirurgia?id=" +
+                cirurgiaAtualizada.getId());
         return mv;
     }
 
-  }
+}
