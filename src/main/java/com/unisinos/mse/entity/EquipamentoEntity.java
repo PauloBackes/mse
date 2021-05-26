@@ -1,4 +1,4 @@
-package com.unisinos.mse.model;
+package com.unisinos.mse.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class Material {
+public class EquipamentoEntity {
     private String descricao;
+    private String patrimonio;
     private String codigo;
-    private Integer quantidade;
     private Boolean validado;
 }
