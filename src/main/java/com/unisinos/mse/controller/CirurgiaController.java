@@ -18,16 +18,18 @@ public class CirurgiaController {
 
     CirurgiaService cirurgiaService;
 
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView homePage() {
 
         var cirurgias = cirurgiaService.buscarTodasCirurgias();
 
-        ModelAndView mv = new ModelAndView("home");
+        ModelAndView mv = new ModelAndView("cirurgias");
         mv.addObject("titulo", "Sai do meu colo, bicho!");
         mv.addObject("listaCirurgias", cirurgias);
         return mv;
     }
+
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView telaLogin() {
