@@ -75,4 +75,19 @@ public class CirurgiaController {
         return mv;
     }
 
+    @RequestMapping(value = "/imprimir/cirurgia", method = RequestMethod.GET)
+    public void atualizarInstrumentosValidadosCirurgia(@RequestParam(value = "id") String id,
+                                                               RedirectAttributes redirectAttributes) {
+
+        cirurgiaService.gerarPdf(id);
+
+
+        /*
+        redirectAttributes.addFlashAttribute("message", "Atualizado com sucesso");
+
+        ModelAndView mv = new ModelAndView("redirect:/validar/cirurgia?id=" +
+                cirurgiaAtualizada.getId());
+        return mv;*/
+    }
+
 }
