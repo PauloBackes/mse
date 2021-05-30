@@ -3,7 +3,6 @@ package com.unisinos.mse.service;
 import com.unisinos.mse.entity.CirurgiaEntity;
 import com.unisinos.mse.entity.EquipamentoEntity;
 import com.unisinos.mse.entity.MaterialEntity;
-import com.unisinos.mse.examplepdf.Example;
 import com.unisinos.mse.mapper.CirurgiaMapper;
 import com.unisinos.mse.model.Cirurgia;
 import com.unisinos.mse.repository.CirurgiaRepository;
@@ -81,73 +80,6 @@ public class CirurgiaService {
 
     public Cirurgia atualizarCirurgia(CirurgiaEntity cirurgiaEntity) {
         return CirurgiaMapper.mapToCirurgia(cirurgiaRepository.save(cirurgiaEntity));
-    }
-
-    public void gerarPdf(String idCirurgia) {
-        Cirurgia cirurgia = CirurgiaMapper.mapToCirurgia(cirurgiaRepository.findCirurgiaById(idCirurgia));
-        Example.generatePdf3(cirurgia);
-        //Example.generatePdf1();
-      /*
-       //Fluxo atual de geração de pdf
-
-CirurgiaEntity cirurgiaEntity = cirurgiaRepository.findCirurgiaById(idCirurgia);
-            PdfDocument pdfDoc = new PdfDocument(new PdfWriter("src/main/java/com/unisinos/mse/pdf/teste.pdf"));
-            Document doc = new Document(pdfDoc);
-
-            Table table = new Table(1);
-
-            //getCell("Qtde", TextAlignment.LEFT, fonts.get("courierFont"))
-
-            List<Cell> cabecalho = new ArrayList<>();
-            cabecalho.add(new Cell().add(new Paragraph("Instrumentos validados")));
-            /*cabecalho.add(new Cell().add(new Paragraph("Material")));
-            cabecalho.add(new Cell().add(new Paragraph("Equipamento")));*/
-        /*cabecalho.stream().forEach(cell -> table.addCell(cell));
-
-        List<Cell> corpoTabela = new ArrayList<>();
-        cirurgiaEntity.getMaterial().stream()
-                .filter(materialEntity -> materialEntity.getValidado())
-                .map(materialEntity ->
-                        corpoTabela.add(new Cell().add(new Paragraph(materialEntity.getDescricao()))))
-                .collect(Collectors.toList());
-
-        cirurgiaEntity.getEquipamento().stream()
-                .filter(equipamentoEntity -> equipamentoEntity.getValidado())
-                .map(equipamentoEntity ->
-                        corpoTabela.add(new Cell().add(new Paragraph(equipamentoEntity.getDescricao()))))
-                .collect(Collectors.toList());
-
-        corpoTabela.stream().forEach(cell -> table.addCell(cell));
-        doc.add(table);
-
-        //=========================================================================================
-        Table table2 = new Table(1);
-        cabecalho = new ArrayList<>();
-        cabecalho.add(new Cell().add(new Paragraph("Instrumentos não validados")));
-            /*cabecalho.add(new Cell().add(new Paragraph("Material")));
-            cabecalho.add(new Cell().add(new Paragraph("Equipamento")));*/
-        /*cabecalho.stream().forEach(cell -> table2.addCell(cell));
-
-        List<Cell> corpoTabela2 = new ArrayList<>();
-        cirurgiaEntity.getMaterial().stream()
-                .filter(materialEntity -> !materialEntity.getValidado())
-                .map(materialEntity ->
-                        corpoTabela2.add(new Cell().add(new Paragraph(materialEntity.getDescricao()))))
-                .collect(Collectors.toList());
-
-        cirurgiaEntity.getEquipamento().stream()
-                .filter(equipamentoEntity -> !equipamentoEntity.getValidado())
-                .map(equipamentoEntity ->
-                        corpoTabela2.add(new Cell().add(new Paragraph(equipamentoEntity.getDescricao()))))
-                .collect(Collectors.toList());
-
-        corpoTabela2.stream().forEach(cell -> table2.addCell(cell));
-        doc.add(table2);
-
-
-
-        doc.close();
-       */
     }
 
 

@@ -1,5 +1,6 @@
 package com.unisinos.mse.controller;
 
+import com.unisinos.mse.facade.RelatorioFacade;
 import com.unisinos.mse.model.Cirurgia;
 import com.unisinos.mse.service.CirurgiaService;
 import lombok.AllArgsConstructor;
@@ -11,12 +12,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 @Controller
 @AllArgsConstructor
 public class CirurgiaController {
 
 
     CirurgiaService cirurgiaService;
+    RelatorioFacade relatorioFacade;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView homePage() {
@@ -75,19 +83,21 @@ public class CirurgiaController {
         return mv;
     }
 
-    @RequestMapping(value = "/imprimir/cirurgia", method = RequestMethod.GET)
-    public void atualizarInstrumentosValidadosCirurgia(@RequestParam(value = "id") String id,
-                                                               RedirectAttributes redirectAttributes) {
-
-        cirurgiaService.gerarPdf(id);
-
-
-        /*
-        redirectAttributes.addFlashAttribute("message", "Atualizado com sucesso");
-
-        ModelAndView mv = new ModelAndView("redirect:/validar/cirurgia?id=" +
-                cirurgiaAtualizada.getId());
-        return mv;*/
+    @RequestMapping(value = "/relatorio/cirurgia", method = RequestMethod.GET)
+    public void gerarRelatorio(@RequestParam(value = "id") String id,
+                               HttpServletResponse response) {
+        try {
+            Path file = Paths.get(relatorioFacade.gerarRelatorioCirurgia(id).getAbsolutePath());
+            if (Files.exists(file)) {
+                response.setContentType("application/pdf");
+                response.addHeader("Content-Disposition",
+                        "inline; filename=" + file.getFileName());
+                Files.copy(file, response.getOutputStream());
+                response.getOutputStream().flush();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
 }
