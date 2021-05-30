@@ -11,6 +11,9 @@
 
     <div class="page-header">
         <h1>Checklist</h1>
+            <a th:href="@{/relatorio/cirurgia?id={id} (id=${cirurgia.getId})}"
+               class="btn btn-primary" role="button">Relatorio
+            </a>
     </div>
 
     <h2 th:text="${message}" id="message" class="hide"></h2>
