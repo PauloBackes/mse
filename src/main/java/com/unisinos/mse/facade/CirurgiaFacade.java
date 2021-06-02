@@ -13,4 +13,7 @@ public class CirurgiaFacade {
     public Cirurgia buscarCirurgiaPeloId(String id) {
         return cirurgiaService.buscarCirurgiaPeloId(id);
     }
+    public Cirurgia buscarCirurgiaPorDescricao(String descricao) {
+        return buscarCirurgiaPorDescricao(descricao);
+    }
 }
