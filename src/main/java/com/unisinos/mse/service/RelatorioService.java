@@ -12,20 +12,36 @@ import com.itextpdf.layout.property.UnitValue;
 import com.unisinos.mse.model.Cirurgia;
 import com.unisinos.mse.model.Equipamento;
 import com.unisinos.mse.model.Material;
+import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import javax.swing.filechooser.FileSystemView;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Log
 public class RelatorioService {
 
     public File gerarRelatorioCirurgia(Cirurgia cirurgia) {
+
         try {
-            String destino = "src/main/java/com/unisinos/mse/pdf/exemplo3-2.pdf";
+            String pasta = "pdf";
+            Path path = Paths.get(FileSystemView.getFileSystemView()
+                            .getHomeDirectory()
+                            .getAbsolutePath(),
+                    pasta);
+            if (!Files.exists(path)) {
+                path.toFile().mkdir();
+            }
+
+            String destino = path.toAbsolutePath() + "/relatorio.pdf";
             PdfDocument pdfDoc = new PdfDocument(new PdfWriter(destino));
             Document documento = new Document(pdfDoc);
 
@@ -36,9 +52,10 @@ public class RelatorioService {
             documento.close();
 
             File file = new File(destino);
+            log.info("Pdf criado com sucesso");
             return file;
-        } catch (
-                Exception e) {
+        } catch (Exception e) {
+            log.info("Mensagem de erro no processo de criação do pdf: " + e.getMessage());
             e.printStackTrace();
         }
         return null;
