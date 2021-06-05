@@ -78,7 +78,7 @@ public class RelatorioService {
         celula = celulaSemBorda("Horário previsto de início", cirurgia.getHoraInicio(), TextAlignment.LEFT);
         tabela.addCell(celula);
 
-        celula = celulaSemBorda("Dia", cirurgia.getData(), TextAlignment.RIGHT);
+        celula = celulaSemBorda("Dia", cirurgia.getDataInicio(), TextAlignment.RIGHT);
         tabela.addCell(celula);
 
         celula = celulaSemBorda("Horário previsto de término", cirurgia.getHoraTermino(), TextAlignment.LEFT);

@@ -27,7 +27,7 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th class="hide"> Id</th>
+            <th> Id</th>
             <th> Sala</th>
             <th> Nome</th>
             <th> Data e Hora de inicio</th>
@@ -37,11 +37,11 @@
         </thead>
         <tbody>
         <tr th:each="cirurgia: ${listaCirurgias}" class="success">
-            <td th:text="${cirurgia.getId}" class="hide"/>
-            <td>Sala 01</td>
+            <td th:text="${cirurgia.getId}"/>
+            <td th:text="${cirurgia.sala}"/>
             <td th:text="${cirurgia.descricao}"/>
-            <td>12/06/2021 11:00</td>
-            <td>12/06/2021 12:30</td>
+            <td th:text="${cirurgia.dataInicio} + ' ' + ${cirurgia.horaInicio}"/>
+            <td th:text="${cirurgia.dataTermino} + ' ' + ${cirurgia.horaTermino}"/>
             <td>
                 <a th:href="@{/editar/cirurgia}" class="btn btn-default" role="button">Editar
                     <span class="glyphicon glyphicon-th-list"></span>

@@ -28,7 +28,6 @@ public class CirurgiaController {
     CirurgiaService cirurgiaService;
     RelatorioFacade relatorioFacade;
 
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView homePage() {
 
@@ -62,7 +61,7 @@ public class CirurgiaController {
     }
 
     @RequestMapping(value = "/validar/cirurgia", method = RequestMethod.GET)
-    public ModelAndView telaChecklist(@RequestParam(value = "id") String id) {
+    public ModelAndView telaChecklist(@RequestParam(value = "id") Integer id) {
         var cirurgia = cirurgiaService.buscarCirurgiaPeloId(id);
         ModelAndView mv = new ModelAndView("checklist");
         mv.addObject("cirurgia", cirurgia);
@@ -78,7 +77,7 @@ public class CirurgiaController {
                                                                @RequestParam(value = "idCirurgia") String idCirurgia,
                                                                RedirectAttributes redirectAttributes) {
 
-        var cirurgiaAtualizada = cirurgiaService.atualizarInstrumentosValidados(idCirurgia, equipamentosSelecionados, materiaisSelecionados);
+        var cirurgiaAtualizada = cirurgiaService.atualizarInstrumentosValidados(Integer.valueOf(idCirurgia), equipamentosSelecionados, materiaisSelecionados);
         redirectAttributes.addFlashAttribute("message", "Atualizado com sucesso");
 
         ModelAndView mv = new ModelAndView("redirect:/validar/cirurgia?id=" +
@@ -87,7 +86,7 @@ public class CirurgiaController {
     }
 
     @RequestMapping(value = "/relatorio/cirurgia", method = RequestMethod.GET)
-    public void gerarRelatorio(@RequestParam(value = "id") String id,
+    public void gerarRelatorio(@RequestParam(value = "id") Integer id,
                                HttpServletResponse response) {
         try {
             Path file = Paths.get(relatorioFacade.gerarRelatorioCirurgia(id).getAbsolutePath());
@@ -100,7 +99,7 @@ public class CirurgiaController {
             }
             log.info("Pdf enviado para a nova aba com sucesso");
         } catch (IOException ex) {
-            log.info("Erro ao enviar o pdf criado para uma nova tela. Mensagem de erro: "+ex.getMessage());
+            log.info("Erro ao enviar o pdf criado para uma nova tela. Mensagem de erro: " + ex.getMessage());
             ex.printStackTrace();
         }
     }

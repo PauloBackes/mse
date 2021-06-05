@@ -12,11 +12,12 @@ import java.util.List;
 @Data
 @Builder
 public class Cirurgia {
-    private String id;
+    private Integer id;
     private Boolean ativo;
     private String sala;
     private String descricao;
-    private String data;
+    private String dataInicio;
+    private String dataTermino;
     private String horaInicio;
     private String horaTermino;
     private List<Equipamento> equipamento;

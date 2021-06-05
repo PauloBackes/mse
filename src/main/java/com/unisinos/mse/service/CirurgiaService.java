@@ -22,15 +22,16 @@ public class CirurgiaService {
         return CirurgiaMapper.mapToCirurgiaList(cirurgiaRepository.findAll());
     }
 
-    public Cirurgia buscarCirurgiaPeloId(String id) {
+    public Cirurgia buscarCirurgiaPeloId(Integer id) {
         return CirurgiaMapper.mapToCirurgia(cirurgiaRepository.findCirurgiaById(id));
     }
 
     public Cirurgia buscarCirurgiaPorDescricao(String descricao) {
-        return CirurgiaMapper.mapToCirurgia(cirurgiaRepository.findCirurgiaById(descricao));
+        return CirurgiaMapper.mapToCirurgia(cirurgiaRepository.findCirurgiaEntitiesByDescricao(descricao));
+
     }
 
-    public Cirurgia atualizarInstrumentosValidados(String cirurgiaId,
+    public Cirurgia atualizarInstrumentosValidados(Integer cirurgiaId,
                                                    String[] equipamentosSelecionados,
                                                    String[] materiaisSelecionados) {
 

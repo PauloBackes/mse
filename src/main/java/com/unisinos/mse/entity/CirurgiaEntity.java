@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -18,8 +19,12 @@ import java.util.List;
 @Builder
 @Document(collection = "cirurgia")
 public class CirurgiaEntity implements Serializable {
+
+    @Transient
+    private static final String NOME_SEQUENCE = "cirurgia_sequence";
+
     @Id
-    private String id;
+    private Integer id;
     private Boolean ativo;
     private String descricao;
     private String sala;

@@ -11,22 +11,22 @@
 
     <div class="page-header">
         <h1>Checklist</h1>
-            <a th:href="@{/relatorio/cirurgia?id={id} (id=${cirurgia.getId})}"
-               target="_blank"
-               class="btn btn-primary" role="button">Relatorio
-            </a>
+        <a th:href="@{/relatorio/cirurgia?id={id} (id=${cirurgia.getId})}"
+           target="_blank"
+           class="btn btn-primary" role="button">Relatorio
+        </a>
     </div>
 
     <h2 th:text="${message}" id="message" class="hide"></h2>
 
     <div class="col-md-6">
-        <h4 th:inline="text">Cirurgia: [[${cirurgia.descricao}]]</h4>
-        <h4 th:inline="text">Horário previsto para início: [[${cirurgia.horaInicio}]]</h4>
+        <h4 th:text="'Cirurgia: '+ ${cirurgia.descricao}"/>
+        <h4 th:text="'Horário previsto para início: '+ ${cirurgia.horaInicio}"/>
     </div>
     <div class="col-md-6">
-        <h4 th:inline="text">Dia: [[${cirurgia.data}]]</h4>
-        <h4 th:inline="text">Sala: [[${cirurgia.sala}]]</h4>
-        <h4 th:inline="text">Horário previsto para término: [[${cirurgia.horaTermino}]]</h4>
+        <h4 th:text="'Dia: '+ ${cirurgia.dataInicio}"/>
+        <h4 th:text="'Sala: '+ ${cirurgia.sala}"/>
+        <h4 th:text="'Horário previsto para término: '+ ${cirurgia.horaTermino}"/>
     </div>
 
     <div class="container-fluid">

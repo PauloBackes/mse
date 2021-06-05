@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class CirurgiaFacade {
     CirurgiaService cirurgiaService;
 
-    public Cirurgia buscarCirurgiaPeloId(String id) {
+    public Cirurgia buscarCirurgiaPeloId(Integer id) {
         return cirurgiaService.buscarCirurgiaPeloId(id);
     }
     public Cirurgia buscarCirurgiaPorDescricao(String descricao) {
