@@ -4,6 +4,7 @@ import com.unisinos.mse.facade.RelatorioFacade;
 import com.unisinos.mse.model.Cirurgia;
 import com.unisinos.mse.service.CirurgiaService;
 import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import java.nio.file.Paths;
 
 @Controller
 @AllArgsConstructor
+@Log
 public class CirurgiaController {
 
 
@@ -96,7 +98,9 @@ public class CirurgiaController {
                 Files.copy(file, response.getOutputStream());
                 response.getOutputStream().flush();
             }
+            log.info("Pdf enviado para a nova aba com sucesso");
         } catch (IOException ex) {
+            log.info("Erro ao enviar o pdf criado para uma nova tela. Mensagem de erro: "+ex.getMessage());
             ex.printStackTrace();
         }
     }
