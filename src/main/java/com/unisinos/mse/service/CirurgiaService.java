@@ -26,11 +26,6 @@ public class CirurgiaService {
         return CirurgiaMapper.mapToCirurgia(cirurgiaRepository.findCirurgiaById(id));
     }
 
-    public Cirurgia buscarCirurgiaPorDescricao(String descricao) {
-        return CirurgiaMapper.mapToCirurgia(cirurgiaRepository.findCirurgiaEntitiesByDescricao(descricao));
-
-    }
-
     public Cirurgia atualizarInstrumentosValidados(Integer cirurgiaId,
                                                    String[] equipamentosSelecionados,
                                                    String[] materiaisSelecionados) {

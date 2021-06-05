@@ -8,7 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface CirurgiaRepository extends MongoRepository<CirurgiaEntity, Integer> {
     CirurgiaEntity findCirurgiaById(Integer id);
 
-    CirurgiaEntity findCirurgiaEntitiesByDescricao(String descricao);
-
     CirurgiaEntity save(CirurgiaEntity cirurgiaEntity);
 }

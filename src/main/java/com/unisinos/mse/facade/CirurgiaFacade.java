@@ -5,6 +5,8 @@ import com.unisinos.mse.service.CirurgiaService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @AllArgsConstructor
 public class CirurgiaFacade {
@@ -13,7 +15,17 @@ public class CirurgiaFacade {
     public Cirurgia buscarCirurgiaPeloId(Integer id) {
         return cirurgiaService.buscarCirurgiaPeloId(id);
     }
-    public Cirurgia buscarCirurgiaPorDescricao(String descricao) {
-        return buscarCirurgiaPorDescricao(descricao);
+
+    public List<Cirurgia> buscarTodasCirurgias() {
+        return cirurgiaService.buscarTodasCirurgias();
+    }
+
+    public Cirurgia atualizarInstrumentosValidados(Integer cirurgiaId,
+                                                   String[] equipamentosSelecionados,
+                                                   String[] materiaisSelecionados) {
+
+        return cirurgiaService.atualizarInstrumentosValidados(cirurgiaId,
+                equipamentosSelecionados,
+                materiaisSelecionados);
     }
 }
