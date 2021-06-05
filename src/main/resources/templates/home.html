@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<!-- Header -->
+<head th:insert="fragments/generico.html :: cabecalho">
+
+<body>
+<!-- Navegação -->
+<nav th:replace="fragments/generico.html :: menu"></nav>
+
+<div class="container">
+    <div class="page-header">
+        <h1>Inicio</h1>
+    </div>
+    <div class="page-header">
+        <h3>Próximas Cirurgias</h3>
+    <div class="">
+    <p> Prepare-se para sua próxima cirurgia.</p>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3>Nome da Cirurgia</h3>
+                    <p>05/06/2021 16:00 - 05/06/2021 18:00</p>
+                    <p><a th:href="@{/cirurgias}" class="btn btn-primary" role="button">Validar informações</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>Nome da Cirurgia2</h3>
+                        <p>05/06/2021 17:00 - 05/06/2021 20:00</p>
+                        <p><a th:href="@{/cirurgias}" class="btn btn-primary" role="button">Validar informações</a></p>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    </div>
+</div>
+
+</div>
+<footer th:replace="fragments/generico.html :: rodape"></footer>
+</body>
+</html>
