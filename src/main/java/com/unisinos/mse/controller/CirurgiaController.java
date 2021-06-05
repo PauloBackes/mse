@@ -35,7 +35,7 @@ public class CirurgiaController {
 
         var cirurgias = cirurgiaFacade.buscarTodasCirurgias();
 
-        ModelAndView mv = new ModelAndView("cirurgias");
+        ModelAndView mv = new ModelAndView("home");
         mv.addObject("titulo", "Sai do meu colo, bicho!");
         mv.addObject("listaCirurgias", cirurgias);
         mv.addObject("pesquisa", Pesquisa.builder().build());
