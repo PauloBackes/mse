@@ -7,6 +7,7 @@ import com.unisinos.mse.mapper.CirurgiaMapper;
 import com.unisinos.mse.model.Cirurgia;
 import com.unisinos.mse.repository.CirurgiaRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -19,7 +20,8 @@ public class CirurgiaService {
     CirurgiaRepository cirurgiaRepository;
 
     public List<Cirurgia> buscarTodasCirurgias() {
-        return CirurgiaMapper.mapToCirurgiaList(cirurgiaRepository.findAll());
+        Sort sort = Sort.by(Sort.Direction.DESC, "dataInicio");
+        return CirurgiaMapper.mapToCirurgiaList(cirurgiaRepository.findAllByAtivo(Boolean.TRUE, sort));
     }
 
     public Cirurgia buscarCirurgiaPeloId(Integer id) {
