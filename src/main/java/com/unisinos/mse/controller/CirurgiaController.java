@@ -32,8 +32,7 @@ public class CirurgiaController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView homePage() {
-
-        var cirurgias = cirurgiaFacade.buscarTodasCirurgias();
+        var cirurgias = cirurgiaFacade.buscarProximasCirurgias();
 
         ModelAndView mv = new ModelAndView("home");
         mv.addObject("titulo", "Sai do meu colo, bicho!");
@@ -128,5 +127,4 @@ public class CirurgiaController {
         mv.addObject("pesquisa", pesquisa);
         return mv;
     }
-
 }
