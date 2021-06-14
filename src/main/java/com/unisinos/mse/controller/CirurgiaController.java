@@ -3,6 +3,7 @@ package com.unisinos.mse.controller;
 import com.unisinos.mse.facade.CirurgiaFacade;
 import com.unisinos.mse.facade.RelatorioFacade;
 import com.unisinos.mse.model.Cirurgia;
+import com.unisinos.mse.model.Equipamento;
 import com.unisinos.mse.model.Pesquisa;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
@@ -58,8 +59,12 @@ public class CirurgiaController {
     }
 
     @RequestMapping(value = "/editar/cirurgia", method = RequestMethod.GET)
-    public ModelAndView telaEdicaoCirurgia() {
-        ModelAndView mv = new ModelAndView("editarCirurgia");
+    public ModelAndView telaEdicaoCirurgia(@RequestParam(value = "id") Integer id) {
+        //ModelAndView mv = new ModelAndView("editarCirurgia");
+        var cirurgia = cirurgiaFacade.buscarCirurgiaPeloId(id);
+        ModelAndView mv = new ModelAndView("editar");
+        mv.addObject("cirurgia", cirurgia);
+        mv.addObject("equipamentos", cirurgia.getEquipamento());
         return mv;
     }
 
@@ -126,5 +131,24 @@ public class CirurgiaController {
         mv.addObject("listaCirurgias", cirurgias);
         mv.addObject("pesquisa", pesquisa);
         return mv;
+    }
+
+    //TODO trocar para atualizar/cirurgia
+    @RequestMapping(value = "/atualizar/edicao", method = RequestMethod.POST)
+    public void atualizarCirurgia(@ModelAttribute Cirurgia cirurgia,
+                                  @RequestParam(value = "descricaoEquipamentos") List<String> equipamentos,
+                                  @RequestParam(value = "descricaoMateriais") List<String> materiais,
+                                  RedirectAttributes redirectAttributes) {
+
+
+        Integer a = 90;
+        //TODO faz o fluxo para atualizar no banco os registros
+
+        /*var cirurgiaAtualizada = cirurgiaFacade.atualizarInstrumentosValidados(Integer.valueOf(idCirurgia), equipamentosSelecionados, materiaisSelecionados);
+        redirectAttributes.addFlashAttribute("message", "Atualizado com sucesso");
+
+        ModelAndView mv = new ModelAndView("redirect:/validar/cirurgia?id=" +
+                cirurgiaAtualizada.getId());
+        return mv;*/
     }
 }

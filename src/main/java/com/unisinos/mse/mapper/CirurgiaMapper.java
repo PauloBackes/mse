@@ -25,6 +25,8 @@ public class CirurgiaMapper {
                         .equipamento(EquipamentoMapper.mapToEquipamentoList(cirurgiaEntity.getEquipamento()))
                         .material(MaterialMapper.mapToMaterialList(cirurgiaEntity.getMaterial()))
                         .ativo(cirurgia.getAtivo())
+                        .dataTeste(cirurgia.getDataInicio())
+                        .dataTesteFim(cirurgia.getDataFim())
                         .build())
                 .orElse(null);
     }

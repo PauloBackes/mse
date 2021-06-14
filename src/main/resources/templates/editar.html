@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<!-- Header -->
+<head th:insert="fragments/generico.html :: cabecalho">
+
+<body>
+<!-- Navegação -->
+<nav th:replace="fragments/generico.html :: menu"></nav>
+
+<div class="container">
+    <div class="page-header">
+        <h1>Edição de Cirurgia</h1>
+    </div>
+    <div class="container" id="dados_cirurgia">
+        <form th:action="@{/atualizar/edicao}" th:object="${cirurgia}" method="post">
+            <h4 class="text-center">Cirurgia</h4>
+            <div class="row">
+                <div class="col-md-2 mb-2">
+                    ID <input th:value="${cirurgia.id}" name="id" class="form-control" type="text" readonly>
+                </div>
+                <div class="col-md-2 mb-2">
+                    Sala <input th:value="${cirurgia.sala}" name="sala" class="form-control" type="text" readonly>
+                </div>
+                <div class="input-group col-md-6 mb-6">
+                    Nome <input type="text" th:value="${cirurgia.descricao}" name="descricao" class="form-control"
+                                placeholder="Nome da Cirurgia">
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="form-group col-md-3 mb-3">
+                    <label>Inicio</label>
+                    <input type="datetime-local" th:field="${cirurgia.dataTeste}" name="dataTeste" class="form-control">
+                </div>
+                <div class="form-group col-md-3 mb-3 ">
+                    <label>Previsão de Finalização</label>
+                    <input type="datetime-local" th:field="${cirurgia.dataTesteFim}" name="dataTesteFim" class="form-control">
+                </div>
+            </div>
+
+            <div class="row">
+                <h4 class="text-center">Equipamentos</h4>
+                <div th:each="equipamento: ${equipamentos}" class="input-group col-md-6 mb-6">
+                    <input type="text" th:value="${equipamento.descricao}" name="descricaoEquipamentos"
+                           class="form-control" placeholder="Nome do equipamento">
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <h4 class="text-center">Materiais</h4>
+                <div th:each="material: ${cirurgia.material}" class="input-group col-md-6 mb-6">
+                    Nome <input type="text" th:value="${material.descricao}" name="descricaoMateriais"
+                                class="form-control" placeholder="Nome do material">
+                </div>
+            </div>
+
+            <div class="pull-right">
+                <button href="" type="button" class="btn btn-default"></span> Voltar</button>
+                <button type="submit" class="btn btn-primary"></span> Salvar</button>
+            </div>
+
+        </form>
+    </div>
+    <br/>
+    <!--    <div class="container" id="equipamento">
+            <form>
+                <h4 class="text-center">Equipamentos</h4>
+                <div class="row">
+                    <div class="form-group col-md-4 mb-4">
+                        <select class="form-control col-md-6 mb-3" id="eq1">
+                            <option> Giroscópio </option>
+                            <option> Raio X </option>
+                            <option> Eletrocardiograma </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4 mb-4">
+                        <select class="form-control col-md-6 mb-3" id="eq2">
+                            <option> Giroscópio </option>
+                            <option> Raio X </option>
+                            <option> Eletrocardiograma </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4 mb-4">
+                        <select class="form-control col-md-6 mb-3" id="eq3">
+                            <option> Giroscópio </option>
+                            <option> Raio X </option>
+                            <option> Eletrocardiograma </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group col-md-4 mb-4">
+                    <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Adicionar Equipamento</button>
+                </div>
+            </form>
+        </div>-->
+    <!--<div class="container" id="materiais">
+        <form>
+            <h4 class="text-center">Materiais</h4>
+            <div class="row">
+                <div class="form-group col-md-4 mb-4">
+                    <select class="form-control col-md-6 mb-3" id="mat1">
+                        <option> Agulha </option>
+                        <option> Algodão </option>
+                        <option> Injeção </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4 mb-4">
+                    <select class="form-control col-md-6 mb-3" id="mat2">
+                        <option> Agulha </option>
+                        <option> Algodão </option>
+                        <option> Injeção </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4 mb-4">
+                    <select class="form-control col-md-6 mb-3" id="mat3">
+                        <option> Agulha </option>
+                        <option> Algodão </option>
+                        <option> Injeção </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row form-group col-md-4 mb-4">
+                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Adicionar Material</button>
+            </div>
+            <div class="row form-group col-md-4 mb-4">
+                <div>
+                    <button href="" type="button" class="btn btn-danger"></span> Voltar </button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#salvar"></span> Salvar</button>
+                </div>
+            </div>
+        </form>
+        <form class="modal fade" id="salvar">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Salvo com sucesso</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h5>Seu registro foi salvo com sucesso</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">
+                            Fechar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>-->
+
+</div>
+
+<footer th:replace="fragments/generico.html :: rodape"></footer>
+</body>
+</html>

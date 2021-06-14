@@ -44,7 +44,7 @@
                 <td th:text="${cirurgia.sala}"/>
                 <td th:text="${cirurgia.dataInicio} + ' ' + ${cirurgia.horaInicio}"/>
                 <td>
-                    <a th:href="@{/editar/cirurgia}" class="btn btn-default" role="button">Editar
+                    <a th:href="@{/editar/cirurgia?id={id} (id=${cirurgia.getId})}" class="btn btn-default" role="button">Editar
                         <span class="glyphicon glyphicon-th-list"></span>
                     </a>
                     <a th:href="@{/validar/cirurgia?id={id} (id=${cirurgia.getId})}" class="btn btn-default"
