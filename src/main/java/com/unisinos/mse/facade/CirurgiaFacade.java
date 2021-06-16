@@ -99,6 +99,14 @@ public class CirurgiaFacade {
                     .collect(Collectors.toList()));
 
             return cirurgiaService.atualizarCirurgia(CirurgiaMapper.mapToCirurgiaEntity(cirurgia));
+
+        } else if (("Material").equals(removerItem.getTipoItem())) {
+            var cirurgia = cirurgiaService.buscarCirurgiaPeloId(removerItem.getIdCirurgia());
+            cirurgia.setMaterial(cirurgia.getMaterial().stream()
+                    .filter(material -> !material.getCodigo().equals(removerItem.getCodigoItem()))
+                    .collect(Collectors.toList()));
+
+            return cirurgiaService.atualizarCirurgia(CirurgiaMapper.mapToCirurgiaEntity(cirurgia));
         }
         return null;
     }

@@ -7,6 +7,7 @@ $(document).ready(function () {
         }
 
         removerEquipamento();
+        removerMaterial();
     });
 })
 
@@ -14,30 +15,35 @@ const URL_BASE = window.location.origin + "/mse";
 
 function removerEquipamento() {
     $(".remover-equipamento").click(function () {
-        var idCirurgia = buscarParametroUrl('id');
         var codigoEquipamento = $(this).parents()[1].cells[0].firstChild.getAttribute("value");
-        console.log(idCirurgia);
-        modalRemoverItem(codigoEquipamento);
+        var tipoItem = "Equipamento";
+        modalRemoverItem(codigoEquipamento, tipoItem);
 
     })
 }
 
-function modalRemoverItem(codigoItem) {
+function removerMaterial() {
+    $(".remover-material").click(function () {
+        var codigoMaterial = $(this).parents()[1].cells[0].firstChild.getAttribute("value");
+        var tipoItem = "Material";
+        modalRemoverItem(codigoMaterial, tipoItem);
+    })
+}
+
+function modalRemoverItem(codigoItem, tipoItem) {
     $("#modal-remover-item").modal('toggle');
 
     $("#botao-remover-item").click(function () {
         var dados = {
             "codigoItem": codigoItem,
             "idCirurgia": buscarParametroUrl('id'),
-            "tipoItem": "Equipamento"
+            "tipoItem": tipoItem
         };
         $.post(URL_BASE + "/remover/item", dados, function (data) {
             location.reload();
         }).fail(function (data) {
             alert("Erro ao remover o item");
         });
-
-
     })
 }
 

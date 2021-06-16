@@ -46,6 +46,7 @@
             <div class="row">
 
                 <table>
+                    <caption class="title-table">Equipamentos</caption>
                     <thead>
                     <tr>
                         <th> Código</th>
@@ -67,35 +68,11 @@
                     </tr>
                     </tbody>
                 </table>
-                <h4 class="text-center">Equipamentos</h4>
-
-                <!-- <div th:each="equipamentos, linha : *{form.equipamentos}">
-                     <td><input th:field="*{equipamentos[__${linha.index}__].descricao}" /></td>
-                     &lt;!&ndash;<td><input th:field="*{equipamentos.codigo}" /></td>&ndash;&gt;
-                 </div>-->
-
-                <!--<div th:each="equipamento, itemStat : *{form}" class="input-group col-md-6 mb-6">-->
-                <!-- <td><input th:field="*{books[__${itemStat.index}__].title}" /></td>
-
-                 <input th:field="*{form[__${itemStat.index}__].descricao}" />
--->
-                <!-- <input type="text" th:value="${equipamento.descricao}" name="descricao"
-                        class="form-control" placeholder="Nome do equipamento">
-
-                 <input type="text" th:value="${equipamento.codigo}" name="codigo"
-                        class="form-control" placeholder="Código do equipamento">
-
-                 <input type="checkbox" name="validado"
-                        th:id="${equipamento.descricao}"
-                        th:value="${equipamento.validado}"
-                        th:checked="${equipamento.validado}"/>
-                 <label th:for="${equipamento.descricao}" th:text=" Validado"/>-->
-                <!--   </div>-->
             </div>
             <br/>
             <div class="row">
-                <h4 class="text-center">Materiais</h4>
                 <table>
+                    <caption class="title-table">Materiais</caption>
                     <thead>
                     <tr>
                         <th> Código</th>
@@ -109,6 +86,9 @@
                         <td><input th:field="*{material[__${itemStat.index}__].descricao}"/></td>
                         <td><input type="checkbox" name="validado"
                                    th:field="*{material[__${itemStat.index}__].validado}"/></td>
+                        <td>
+                            <button type="button" class="btn btn-default remover-material"></span> Remover</button>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -122,99 +102,6 @@
         </form>
     </div>
     <br/>
-    <!--    <div class="container" id="equipamento">
-            <form>
-                <h4 class="text-center">Equipamentos</h4>
-                <div class="row">
-                    <div class="form-group col-md-4 mb-4">
-                        <select class="form-control col-md-6 mb-3" id="eq1">
-                            <option> Giroscópio </option>
-                            <option> Raio X </option>
-                            <option> Eletrocardiograma </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-4 mb-4">
-                        <select class="form-control col-md-6 mb-3" id="eq2">
-                            <option> Giroscópio </option>
-                            <option> Raio X </option>
-                            <option> Eletrocardiograma </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-4 mb-4">
-                        <select class="form-control col-md-6 mb-3" id="eq3">
-                            <option> Giroscópio </option>
-                            <option> Raio X </option>
-                            <option> Eletrocardiograma </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row form-group col-md-4 mb-4">
-                    <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Adicionar Equipamento</button>
-                </div>
-            </form>
-        </div>-->
-    <!--<div class="container" id="materiais">
-        <form>
-            <h4 class="text-center">Materiais</h4>
-            <div class="row">
-                <div class="form-group col-md-4 mb-4">
-                    <select class="form-control col-md-6 mb-3" id="mat1">
-                        <option> Agulha </option>
-                        <option> Algodão </option>
-                        <option> Injeção </option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-4 mb-4">
-                    <select class="form-control col-md-6 mb-3" id="mat2">
-                        <option> Agulha </option>
-                        <option> Algodão </option>
-                        <option> Injeção </option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-4 mb-4">
-                    <select class="form-control col-md-6 mb-3" id="mat3">
-                        <option> Agulha </option>
-                        <option> Algodão </option>
-                        <option> Injeção </option>
-                    </select>
-                </div>
-            </div>
-            <div class="row form-group col-md-4 mb-4">
-                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Adicionar Material</button>
-            </div>
-            <div class="row form-group col-md-4 mb-4">
-                <div>
-                    <button href="" type="button" class="btn btn-danger"></span> Voltar </button>
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#salvar"></span> Salvar</button>
-                </div>
-            </div>
-        </form>
-        <form class="modal fade" id="salvar">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4>Salvo com sucesso</h4>
-                    </div>
-                    <div class="modal-body">
-                        <h5>Seu registro foi salvo com sucesso</h5>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">
-                            Fechar
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>-->
     <form class="modal fade" id="modal-remover-item">
         <div class="modal-dialog">
             <div class="modal-content">
