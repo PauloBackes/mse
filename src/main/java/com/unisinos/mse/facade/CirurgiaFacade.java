@@ -1,12 +1,10 @@
 package com.unisinos.mse.facade;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.unisinos.mse.entity.CirurgiaEntity;
 import com.unisinos.mse.entity.EquipamentoEntity;
 import com.unisinos.mse.entity.MaterialEntity;
 import com.unisinos.mse.mapper.CirurgiaMapper;
-import com.unisinos.mse.model.Cirurgia;
-import com.unisinos.mse.model.RemoverItem;
+import com.unisinos.mse.model.*;
 import com.unisinos.mse.service.CirurgiaService;
 import com.unisinos.mse.service.GeradorSequenceService;
 import lombok.AllArgsConstructor;
@@ -113,5 +111,37 @@ public class CirurgiaFacade {
 
     public Cirurgia atualizarCirurgia(Cirurgia cirurgia) {
         return cirurgiaService.atualizarCirurgia(CirurgiaMapper.mapToCirurgiaEntity(cirurgia));
+    }
+
+    public Cirurgia adicionarItem(AdicionarItem adicionarItem) {
+        if (("Equipamento").equals(adicionarItem.getTipoItem())) {
+            var cirurgia = cirurgiaService.buscarCirurgiaPeloId(adicionarItem.getIdCirurgia());
+            var equipamentos = cirurgia.getEquipamento();
+
+            for (int contador = 0; contador < adicionarItem.getQuantidade(); contador++) {
+                equipamentos.add(0, Equipamento.builder()
+                        .codigo(" ")
+                        .validado(Boolean.FALSE)
+                        .descricao(" ")
+                        .build());
+            }
+            cirurgia.setEquipamento(equipamentos);
+            return cirurgiaService.atualizarCirurgia(CirurgiaMapper.mapToCirurgiaEntity(cirurgia));
+
+        } else if (("Material").equals(adicionarItem.getTipoItem())) {
+            var cirurgia = cirurgiaService.buscarCirurgiaPeloId(adicionarItem.getIdCirurgia());
+            var materiais = cirurgia.getMaterial();
+
+            for (int contador = 0; contador < adicionarItem.getQuantidade(); contador++) {
+                materiais.add(0, Material.builder()
+                        .codigo(" ")
+                        .validado(Boolean.FALSE)
+                        .descricao(" ")
+                        .build());
+            }
+            cirurgia.setMaterial(materiais);
+            return cirurgiaService.atualizarCirurgia(CirurgiaMapper.mapToCirurgiaEntity(cirurgia));
+        }
+        return null;
     }
 }

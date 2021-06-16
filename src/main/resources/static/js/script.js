@@ -8,6 +8,8 @@ $(document).ready(function () {
 
         removerEquipamento();
         removerMaterial();
+        adicionarEquipamento();
+        adicionarMaterial();
     });
 })
 
@@ -51,4 +53,36 @@ function buscarParametroUrl(param) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     return urlParams.get(param);
+}
+
+function adicionarEquipamento() {
+    $("#botao-adicionar-equipamento").click(function () {
+        var quantidade = $("#campo-adicionar-equipamento").val();
+        var dados = {
+            "quantidade": quantidade,
+            "idCirurgia": buscarParametroUrl('id'),
+            "tipoItem": "Equipamento"
+        };
+        $.post(URL_BASE + "/adicionar/item", dados, function (data) {
+            location.reload();
+        }).fail(function (data) {
+            alert("Erro ao remover o item");
+        });
+    });
+}
+
+function adicionarMaterial() {
+    $("#botao-adicionar-material").click(function () {
+        var quantidade = $("#campo-adicionar-material").val();
+        var dados = {
+            "quantidade": quantidade,
+            "idCirurgia": buscarParametroUrl('id'),
+            "tipoItem": "Material"
+        };
+        $.post(URL_BASE + "/adicionar/item", dados, function (data) {
+            location.reload();
+        }).fail(function (data) {
+            alert("Erro ao remover o item");
+        });
+    });
 }

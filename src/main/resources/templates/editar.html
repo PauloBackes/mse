@@ -41,17 +41,12 @@
                     <input type="datetime-local" th:field="${cirurgia.dataTesteFim}" name="dataTesteFim"
                            class="form-control">
                 </div>
-                <div class="form-group col-md-3 mb-3 ">
-                    <label>Ativo</label><br/>
-                    <input type="checkbox" name="ativo" th:field="${cirurgia.ativo}"
-                           th:value="${cirurgia.ativo}"
-                           th:checked="${cirurgia.ativo}"
-                    />
-                </div>
+
+                <input type="checkbox" name="ativo" th:field="${cirurgia.ativo}" class="hide"/>
+
             </div>
 
             <div class="row">
-
                 <table>
                     <caption class="title-table">Equipamentos</caption>
                     <thead>
@@ -68,9 +63,12 @@
                         <td><input type="checkbox" name="validado"
                                    th:field="*{equipamento[__${itemStat.index}__].validado}"/></td>
                         <td>
-
                             <button type="button" class="btn btn-default remover-equipamento"></span> Remover</button>
-
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-default adicionar-equipamento"
+                                    data-toggle="modal" data-target="#modal-adicionar-equipamento">Adicionar
+                            </button>
                         </td>
                     </tr>
                     </tbody>
@@ -96,13 +94,20 @@
                         <td>
                             <button type="button" class="btn btn-default remover-material"></span> Remover</button>
                         </td>
+                        <td>
+                            <button type="button" class="btn btn-default"
+                                    data-toggle="modal" data-target="#modal-adicionar-material">Adicionar
+                            </button>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="pull-right">
-                <button href="" type="button" class="btn btn-default"></span> Voltar</button>
+                <a th:href="@{/cirurgias}" class="btn btn-default" role="button">
+                    Voltar
+                </a>
                 <button type="submit" class="btn btn-primary"></span> Salvar</button>
             </div>
 
@@ -138,6 +143,52 @@
                 <div class="modal-footer">
                     <button class="btn btn-primary" data-dismiss="modal">
                         Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form class="modal fade" id="modal-adicionar-equipamento">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Adição de equipamento</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Digite a quantidade de equipamentos que você quer adicionar?</h4>
+                    <input name="addEquipamento" id="campo-adicionar-equipamento" class="form-control" type="text"
+                           placeholder="4">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal">
+                        Fechar
+                    </button>
+                    <button class="btn btn-primary" id="botao-adicionar-equipamento" data-dismiss="modal">
+                        Criar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form class="modal fade" id="modal-adicionar-material">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Adição de material</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Digite a quantidade de materiais que você quer adicionar?</h4>
+                    <input name="addEquipamento" id="campo-adicionar-material" class="form-control" type="text"
+                           placeholder="4">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal">
+                        Fechar
+                    </button>
+                    <button class="btn btn-primary" id="botao-adicionar-material" data-dismiss="modal">
+                        Criar
                     </button>
                 </div>
             </div>

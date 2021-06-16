@@ -2,6 +2,7 @@ package com.unisinos.mse.controller;
 
 import com.unisinos.mse.facade.CirurgiaFacade;
 import com.unisinos.mse.facade.RelatorioFacade;
+import com.unisinos.mse.model.AdicionarItem;
 import com.unisinos.mse.model.Cirurgia;
 import com.unisinos.mse.model.Pesquisa;
 import com.unisinos.mse.model.RemoverItem;
@@ -149,5 +150,11 @@ public class CirurgiaController {
     public @ResponseBody
     Cirurgia removerItemDaCirurgia(@ModelAttribute RemoverItem removerItem) {
         return cirurgiaFacade.removerItem(removerItem);
+    }
+
+    @RequestMapping(value = "/adicionar/item", method = RequestMethod.POST, produces = "application/json")
+    public @ResponseBody
+    Cirurgia adicionarItemDaCirurgia(@ModelAttribute AdicionarItem adicionarItem) {
+        return cirurgiaFacade.adicionarItem(adicionarItem);
     }
 }
