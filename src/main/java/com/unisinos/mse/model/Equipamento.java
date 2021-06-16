@@ -13,8 +13,6 @@ import java.util.List;
 @Builder
 public class Equipamento {
     private String descricao;
-    private String patrimonio;
     private String codigo;
     private Boolean validado;
-    private List<String> nomeEquipamento;
 }

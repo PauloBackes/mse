@@ -26,4 +26,21 @@ public class MaterialMapper {
                 .validado(materialEntity.getValidado())
                 .build();
     }
+
+    public static List<MaterialEntity> mapToMaterialEntityList(List<Material> materiais) {
+        if (ObjectUtils.isEmpty(materiais)) return Collections.emptyList();
+
+        return materiais.stream()
+                .map(MaterialMapper::mapToMaterialEntity)
+                .collect(Collectors.toList());
+
+    }
+
+    private static MaterialEntity mapToMaterialEntity(Material material) {
+        return MaterialEntity.builder()
+                .descricao(material.getDescricao())
+                .codigo(material.getCodigo())
+                .validado(material.getValidado())
+                .build();
+    }
 }
