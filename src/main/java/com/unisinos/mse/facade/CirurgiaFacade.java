@@ -110,4 +110,8 @@ public class CirurgiaFacade {
         }
         return null;
     }
+
+    public Cirurgia atualizarCirurgia(Cirurgia cirurgia) {
+        return cirurgiaService.atualizarCirurgia(CirurgiaMapper.mapToCirurgiaEntity(cirurgia));
+    }
 }

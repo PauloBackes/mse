@@ -135,22 +135,14 @@ public class CirurgiaController {
 
     //TODO trocar para atualizar/cirurgia
     @RequestMapping(value = "/atualizar/edicao", method = RequestMethod.POST)
-    public void atualizarCirurgia(@ModelAttribute Cirurgia cirurgia,
-                                  // @RequestParam(value = "descricaoEquipamentos") List<String> equipamentos,
-                                  //@RequestParam(value = "descricaoMateriais") List<String> materiais,
-                                  RedirectAttributes redirectAttributes,
-                                  HttpSession session) {
+    public ModelAndView atualizarCirurgia(@ModelAttribute Cirurgia cirurgia,
+                                          RedirectAttributes redirectAttributes) {
 
-
-        Integer a = 90;
-        //TODO faz o fluxo para atualizar no banco os registros
-
-        /*var cirurgiaAtualizada = cirurgiaFacade.atualizarInstrumentosValidados(Integer.valueOf(idCirurgia), equipamentosSelecionados, materiaisSelecionados);
+        var cirurgiaAtualizada = cirurgiaFacade.atualizarCirurgia(cirurgia);
         redirectAttributes.addFlashAttribute("message", "Atualizado com sucesso");
-
-        ModelAndView mv = new ModelAndView("redirect:/validar/cirurgia?id=" +
+        ModelAndView mv = new ModelAndView("redirect:/editar/cirurgia?id=" +
                 cirurgiaAtualizada.getId());
-        return mv;*/
+        return mv;
     }
 
     @RequestMapping(value = "/remover/item", method = RequestMethod.POST, produces = "application/json")
