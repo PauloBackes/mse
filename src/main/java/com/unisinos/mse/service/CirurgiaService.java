@@ -7,10 +7,14 @@ import com.unisinos.mse.mapper.CirurgiaMapper;
 import com.unisinos.mse.model.Cirurgia;
 import com.unisinos.mse.repository.CirurgiaRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -18,19 +22,32 @@ public class CirurgiaService {
 
     CirurgiaRepository cirurgiaRepository;
 
-    public List<Cirurgia> buscarTodasCirurgias() {
-        return CirurgiaMapper.mapToCirurgiaList(cirurgiaRepository.findAll());
+    public List<Cirurgia> buscarProximasCirurgias() {
+        Sort sort = Sort.by(Sort.Direction.ASC, "dataInicio");
+        PageRequest pagina = PageRequest.of(0, 20, sort);
+        var dataAtual = LocalDateTime.now();
+
+        var cirurgias = cirurgiaRepository.findAllByAtivo2(Boolean.TRUE, pagina)
+                .stream().filter(cirurgia ->
+                        cirurgia.getDataInicio().getDayOfMonth() >= dataAtual.getDayOfMonth() &&
+                                cirurgia.getDataInicio().getMonthValue() >= dataAtual.getMonthValue() &&
+                                cirurgia.getDataInicio().getYear() == dataAtual.getYear())
+                .collect(Collectors.toList());
+
+        return CirurgiaMapper.mapToCirurgiaList(cirurgias);
     }
 
-    public Cirurgia buscarCirurgiaPeloId(String id) {
+    public List<Cirurgia> buscarTodasCirurgias() {
+        Sort sort = Sort.by(Sort.Direction.DESC, "dataInicio");
+        PageRequest request = PageRequest.of(0, 2, sort);
+        return CirurgiaMapper.mapToCirurgiaList(cirurgiaRepository.findAllByAtivo(Boolean.TRUE, sort));
+    }
+
+    public Cirurgia buscarCirurgiaPeloId(Integer id) {
         return CirurgiaMapper.mapToCirurgia(cirurgiaRepository.findCirurgiaById(id));
     }
 
-    public Cirurgia buscarCirurgiaPorDescricao(String descricao) {
-        return CirurgiaMapper.mapToCirurgia(cirurgiaRepository.findCirurgiaById(descricao));
-    }
-
-    public Cirurgia atualizarInstrumentosValidados(String cirurgiaId,
+    public Cirurgia atualizarInstrumentosValidados(Integer cirurgiaId,
                                                    String[] equipamentosSelecionados,
                                                    String[] materiaisSelecionados) {
 
