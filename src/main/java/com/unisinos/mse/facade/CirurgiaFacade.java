@@ -25,7 +25,31 @@ public class CirurgiaFacade {
     }
 
     public List<Cirurgia> buscarTodasCirurgias() {
-        return cirurgiaService.buscarTodasCirurgias();
+        var cirurgias = cirurgiaService.buscarTodasCirurgias();
+        setarItensConferidos(cirurgias);
+        return cirurgias;
+    }
+
+    private void setarItensConferidos(List<Cirurgia> cirurgias) {
+        cirurgias.stream().forEach(cirurgia -> {
+            Boolean equipamentoNaoValidado = isEquipametoNaoValidado(cirurgia.getEquipamento());
+
+            Boolean materialNaoValidado = isMaterialNaoValidado(cirurgia.getMaterial());
+
+            if (equipamentoNaoValidado || materialNaoValidado) {
+                cirurgia.setTodosItensConferidos(Boolean.FALSE);
+            } else {
+                cirurgia.setTodosItensConferidos(Boolean.TRUE);
+            }
+        });
+    }
+
+    private Boolean isEquipametoNaoValidado(List<Equipamento> equipamentos) {
+        return equipamentos.stream().anyMatch(equipamento -> !equipamento.getValidado());
+    }
+
+    private Boolean isMaterialNaoValidado(List<Material> materiais) {
+        return materiais.stream().anyMatch(material -> !material.getValidado());
     }
 
     public List<Cirurgia> buscarProximasCirurgias() {

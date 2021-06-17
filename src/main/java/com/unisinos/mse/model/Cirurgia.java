@@ -28,4 +28,5 @@ public class Cirurgia {
     private LocalDateTime dataTeste;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime dataTesteFim;
+    private Boolean todosItensConferidos;
 }
