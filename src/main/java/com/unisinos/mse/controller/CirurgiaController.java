@@ -2,20 +2,20 @@ package com.unisinos.mse.controller;
 
 import com.unisinos.mse.facade.CirurgiaFacade;
 import com.unisinos.mse.facade.RelatorioFacade;
+import com.unisinos.mse.model.AdicionarItem;
 import com.unisinos.mse.model.Cirurgia;
 import com.unisinos.mse.model.Pesquisa;
+import com.unisinos.mse.model.RemoverItem;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -58,8 +58,14 @@ public class CirurgiaController {
     }
 
     @RequestMapping(value = "/editar/cirurgia", method = RequestMethod.GET)
-    public ModelAndView telaEdicaoCirurgia() {
-        ModelAndView mv = new ModelAndView("editarCirurgia");
+    public ModelAndView telaEdicaoCirurgia(@RequestParam(value = "id") Integer id,
+                                           HttpSession session) {
+
+        var cirurgia = cirurgiaFacade.buscarCirurgiaPeloId(id);
+        session.setAttribute("cirurgia", cirurgia);
+        ModelAndView mv = new ModelAndView("editar");
+        mv.addObject("cirurgia", cirurgia);
+        mv.addObject("equipamentos", cirurgia.getEquipamento());
         return mv;
     }
 
@@ -126,5 +132,29 @@ public class CirurgiaController {
         mv.addObject("listaCirurgias", cirurgias);
         mv.addObject("pesquisa", pesquisa);
         return mv;
+    }
+
+    //TODO trocar para atualizar/cirurgia
+    @RequestMapping(value = "/atualizar/edicao", method = RequestMethod.POST)
+    public ModelAndView atualizarCirurgia(@ModelAttribute Cirurgia cirurgia,
+                                          RedirectAttributes redirectAttributes) {
+
+        var cirurgiaAtualizada = cirurgiaFacade.atualizarCirurgia(cirurgia);
+        redirectAttributes.addFlashAttribute("message", "Atualizado com sucesso");
+        ModelAndView mv = new ModelAndView("redirect:/editar/cirurgia?id=" +
+                cirurgiaAtualizada.getId());
+        return mv;
+    }
+
+    @RequestMapping(value = "/remover/item", method = RequestMethod.POST, produces = "application/json")
+    public @ResponseBody
+    Cirurgia removerItemDaCirurgia(@ModelAttribute RemoverItem removerItem) {
+        return cirurgiaFacade.removerItem(removerItem);
+    }
+
+    @RequestMapping(value = "/adicionar/item", method = RequestMethod.POST, produces = "application/json")
+    public @ResponseBody
+    Cirurgia adicionarItemDaCirurgia(@ModelAttribute AdicionarItem adicionarItem) {
+        return cirurgiaFacade.adicionarItem(adicionarItem);
     }
 }

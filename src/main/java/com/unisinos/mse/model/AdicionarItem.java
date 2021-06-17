@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class Material {
-    private String descricao;
-    private String codigo;
-    private Integer quantidade;//TODO remover esse campo
-    private Boolean validado;
+public class AdicionarItem {
+    private Integer quantidade;
+    private Integer idCirurgia;
+    private String tipoItem;
 }

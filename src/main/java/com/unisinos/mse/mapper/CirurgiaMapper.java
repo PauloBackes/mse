@@ -1,10 +1,13 @@
 package com.unisinos.mse.mapper;
 
 import com.unisinos.mse.entity.CirurgiaEntity;
+import com.unisinos.mse.entity.EquipamentoEntity;
+import com.unisinos.mse.entity.MaterialEntity;
 import com.unisinos.mse.model.Cirurgia;
 import com.unisinos.mse.utils.FormatadorDataHora;
 import org.springframework.util.ObjectUtils;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +28,8 @@ public class CirurgiaMapper {
                         .equipamento(EquipamentoMapper.mapToEquipamentoList(cirurgiaEntity.getEquipamento()))
                         .material(MaterialMapper.mapToMaterialList(cirurgiaEntity.getMaterial()))
                         .ativo(cirurgia.getAtivo())
+                        .dataTeste(cirurgia.getDataInicio())
+                        .dataTesteFim(cirurgia.getDataFim())
                         .build())
                 .orElse(null);
     }
@@ -36,5 +41,20 @@ public class CirurgiaMapper {
                     .collect(Collectors.toList());
         }
         return Collections.emptyList();
+    }
+
+    public static CirurgiaEntity mapToCirurgiaEntity(Cirurgia cirurgia) {
+        if (ObjectUtils.isEmpty(cirurgia)) return null;
+
+        return CirurgiaEntity.builder()
+                .id(cirurgia.getId())
+                .ativo(cirurgia.getAtivo())
+                .descricao(cirurgia.getDescricao())
+                .sala(cirurgia.getSala())
+                .dataInicio(cirurgia.getDataTeste())
+                .dataFim(cirurgia.getDataTesteFim())
+                .equipamento(EquipamentoMapper.mapToEquipamentoEntityList(cirurgia.getEquipamento()))
+                .material(MaterialMapper.mapToMaterialEntityList(cirurgia.getMaterial()))
+                .build();
     }
 }

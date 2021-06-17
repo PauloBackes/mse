@@ -22,9 +22,25 @@ public class EquipamentoMapper {
     private static Equipamento mapToEquipamento(EquipamentoEntity equipamentoEntity) {
         return Equipamento.builder()
                 .descricao(equipamentoEntity.getDescricao())
-                .patrimonio(equipamentoEntity.getPatrimonio())
+                //.patrimonio(equipamentoEntity.getPatrimonio())
                 .codigo(equipamentoEntity.getCodigo())
                 .validado(equipamentoEntity.getValidado())
+                .build();
+    }
+
+    public static List<EquipamentoEntity> mapToEquipamentoEntityList(List<Equipamento> equipamentos) {
+        if (ObjectUtils.isEmpty(equipamentos)) return Collections.emptyList();
+
+        return equipamentos.stream()
+                .map(EquipamentoMapper::mapToEquipamentoEntity)
+                .collect(Collectors.toList());
+    }
+
+    private static EquipamentoEntity mapToEquipamentoEntity(Equipamento equipamento) {
+        return EquipamentoEntity.builder()
+                .descricao(equipamento.getDescricao())
+                .codigo(equipamento.getCodigo())
+                .validado(equipamento.getValidado())
                 .build();
     }
 }

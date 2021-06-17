@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<!-- Header -->
+<head th:insert="fragments/generico.html :: cabecalho">
+
+<body>
+<!-- Navegação -->
+<nav th:replace="fragments/generico.html :: menu"></nav>
+
+<div class="container">
+    <div class="page-header">
+        <h1>Edição de Cirurgia</h1>
+    </div>
+    <div class="container" id="dados_cirurgia">
+        <form th:action="@{/atualizar/edicao}" th:object="${cirurgia}" method="post">
+
+
+            <h4 class="text-center">Cirurgia</h4>
+            <div class="row">
+                <div class="col-md-2 mb-2">
+                    ID <input th:value="${session.cirurgia.id}" name="id" class="form-control" type="text" readonly>
+                </div>
+                <div class="col-md-2 mb-2">
+                    Sala <input th:value="${session.cirurgia.sala}" name="sala" class="form-control" type="text"
+                                readonly>
+                </div>
+                <div class="input-group col-md-6 mb-6">
+                    Nome <input type="text" th:value="${session.cirurgia.descricao}" name="descricao"
+                                class="form-control"
+                                placeholder="Nome da Cirurgia">
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="form-group col-md-3 mb-3">
+                    <label>Inicio</label>
+                    <input type="datetime-local" th:field="${cirurgia.dataTeste}" name="dataTeste" class="form-control">
+                </div>
+                <div class="form-group col-md-3 mb-3 ">
+                    <label>Previsão de Finalização</label>
+                    <input type="datetime-local" th:field="${cirurgia.dataTesteFim}" name="dataTesteFim"
+                           class="form-control">
+                </div>
+
+                <input type="checkbox" name="ativo" th:field="${cirurgia.ativo}" class="hide"/>
+
+            </div>
+
+            <div class="row">
+                <table>
+                    <caption class="title-table">Equipamentos</caption>
+                    <thead>
+                    <tr>
+                        <th> Código</th>
+                        <th> Descrição</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="equipamento, itemStat : *{equipamento}">
+                        <td><input th:field="*{equipamento[__${itemStat.index}__].codigo}"/></td>
+                        <td><input th:field="*{equipamento[__${itemStat.index}__].descricao}"/></td>
+                        <input type="checkbox" name="validado" class="hide"
+                                   th:field="*{equipamento[__${itemStat.index}__].validado}"/>
+                        <td>
+                            <button type="button" class="btn btn-default remover-equipamento"></span> Remover</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-default adicionar-equipamento"
+                                    data-toggle="modal" data-target="#modal-adicionar-equipamento">Adicionar
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br/>
+            <div class="row">
+                <table>
+                    <caption class="title-table">Materiais</caption>
+                    <thead>
+                    <tr>
+                        <th> Código</th>
+                        <th> Descrição</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="material, itemStat : *{material}">
+                        <td><input th:field="*{material[__${itemStat.index}__].codigo}"/></td>
+                        <td><input th:field="*{material[__${itemStat.index}__].descricao}"/></td>
+                        <input type="checkbox" name="validado" class="hide"
+                                   th:field="*{material[__${itemStat.index}__].validado}"/>
+                        <td>
+                            <button type="button" class="btn btn-default remover-material"></span> Remover</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-default"
+                                    data-toggle="modal" data-target="#modal-adicionar-material">Adicionar
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pull-right">
+                <a th:href="@{/cirurgias}" class="btn btn-default" role="button">
+                    Voltar
+                </a>
+                <button type="submit" class="btn btn-primary"></span> Salvar</button>
+            </div>
+
+        </form>
+    </div>
+    <br/>
+    <form class="modal fade" id="modal-remover-item">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="texto-remover-item">Você deseja remover o item?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn btn-danger" id="botao-remover-item" data-dismiss="modal">
+                        Remover
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <h2 th:text="${message}" id="message" class="hide"></h2>
+
+    <form class="modal fade" id="modal-success">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Seu registro foi atualizado com sucesso</h4>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal">
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form class="modal fade" id="modal-adicionar-equipamento">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Adição de equipamento</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Digite a quantidade de equipamentos que você quer adicionar?</h4>
+                    <input name="addEquipamento" id="campo-adicionar-equipamento" class="form-control" type="text"
+                           placeholder="4">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal">
+                        Fechar
+                    </button>
+                    <button class="btn btn-primary" id="botao-adicionar-equipamento" data-dismiss="modal">
+                        Criar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form class="modal fade" id="modal-adicionar-material">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Adição de material</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Digite a quantidade de materiais que você quer adicionar?</h4>
+                    <input name="addEquipamento" id="campo-adicionar-material" class="form-control" type="text"
+                           placeholder="4">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal">
+                        Fechar
+                    </button>
+                    <button class="btn btn-primary" id="botao-adicionar-material" data-dismiss="modal">
+                        Criar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<footer th:replace="fragments/generico.html :: rodape"></footer>
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
+</body>
+</html>
