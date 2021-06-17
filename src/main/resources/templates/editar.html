@@ -53,15 +53,14 @@
                     <tr>
                         <th> Código</th>
                         <th> Descrição</th>
-                        <th> Valido</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="equipamento, itemStat : *{equipamento}">
                         <td><input th:field="*{equipamento[__${itemStat.index}__].codigo}"/></td>
                         <td><input th:field="*{equipamento[__${itemStat.index}__].descricao}"/></td>
-                        <td><input type="checkbox" name="validado"
-                                   th:field="*{equipamento[__${itemStat.index}__].validado}"/></td>
+                        <input type="checkbox" name="validado" class="hide"
+                                   th:field="*{equipamento[__${itemStat.index}__].validado}"/>
                         <td>
                             <button type="button" class="btn btn-default remover-equipamento"></span> Remover</button>
                         </td>
@@ -82,15 +81,14 @@
                     <tr>
                         <th> Código</th>
                         <th> Descrição</th>
-                        <th> Valido</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="material, itemStat : *{material}">
                         <td><input th:field="*{material[__${itemStat.index}__].codigo}"/></td>
                         <td><input th:field="*{material[__${itemStat.index}__].descricao}"/></td>
-                        <td><input type="checkbox" name="validado"
-                                   th:field="*{material[__${itemStat.index}__].validado}"/></td>
+                        <input type="checkbox" name="validado" class="hide"
+                                   th:field="*{material[__${itemStat.index}__].validado}"/>
                         <td>
                             <button type="button" class="btn btn-default remover-material"></span> Remover</button>
                         </td>
