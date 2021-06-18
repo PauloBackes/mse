@@ -26,7 +26,13 @@
     <div class="col-md-6">
         <h4 th:text="'Dia: '+ ${cirurgia.dataInicio}"/>
         <h4 th:text="'Sala: '+ ${cirurgia.sala}"/>
-        <h4 th:text="'Horário previsto para término: '+ ${cirurgia.horaTermino}"/>
+        <th:block th:if="${cirurgia.horaTermino} == null">
+            <h4 th:text="'Horário previsto para término: Não definido'"/>
+        </th:block>
+        <th:block th:unless="${cirurgia.horaTermino} == null">
+            <h4 th:text="'Horário previsto para término: '+ ${cirurgia.horaTermino}"/>
+        </th:block>
+
     </div>
 
     <div class="container-fluid">
