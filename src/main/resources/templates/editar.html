@@ -18,14 +18,14 @@
             <h4 class="text-center">Cirurgia</h4>
             <div class="row">
                 <div class="col-md-2 mb-2">
-                    ID <input th:value="${session.cirurgia.id}" name="id" class="form-control" type="text" readonly>
+                    ID <input th:value="${cirurgia.id}" name="id" class="form-control" type="text" readonly>
                 </div>
                 <div class="col-md-2 mb-2">
-                    Sala <input th:value="${session.cirurgia.sala}" name="sala" class="form-control" type="text"
+                    Sala <input th:value="${cirurgia.sala}" name="sala" class="form-control" type="text"
                                 readonly>
                 </div>
                 <div class="input-group col-md-6 mb-6">
-                    Nome <input type="text" th:value="${session.cirurgia.descricao}" name="descricao"
+                    Nome <input type="text" th:value="${cirurgia.descricao}" name="descricao"
                                 class="form-control"
                                 placeholder="Nome da Cirurgia">
                 </div>
@@ -46,7 +46,7 @@
 
             </div>
 
-            <div class="row">
+            <div class="row margin-left-table">
                 <table>
                     <caption class="title-table">Equipamentos</caption>
                     <thead>
@@ -57,16 +57,22 @@
                     </thead>
                     <tbody>
                     <tr th:each="equipamento, itemStat : *{equipamento}">
-                        <td><input th:field="*{equipamento[__${itemStat.index}__].codigo}"/></td>
-                        <td><input th:field="*{equipamento[__${itemStat.index}__].descricao}"/></td>
+                        <td class="padding-right padding-bottom"><input
+                                th:field="*{equipamento[__${itemStat.index}__].codigo}"
+                                class="form-control"/>
+                        <td class="padding-right padding-bottom"><input
+                                th:field="*{equipamento[__${itemStat.index}__].descricao}" class="form-control"/></td>
                         <input type="checkbox" name="validado" class="hide"
-                                   th:field="*{equipamento[__${itemStat.index}__].validado}"/>
-                        <td>
-                            <button type="button" class="btn btn-default remover-equipamento"></span> Remover</button>
+                               th:field="*{equipamento[__${itemStat.index}__].validado}"/>
+                        <td class="padding-bottom">
+                            <button type="button" class="btn btn-default remover-equipamento">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
                         </td>
-                        <td>
+                        <td class="padding-bottom">
                             <button type="button" class="btn btn-default adicionar-equipamento"
-                                    data-toggle="modal" data-target="#modal-adicionar-equipamento">Adicionar
+                                    data-toggle="modal" data-target="#modal-adicionar-equipamento">
+                                <span class="glyphicon glyphicon-plus"></span>
                             </button>
                         </td>
                     </tr>
@@ -74,7 +80,7 @@
                 </table>
             </div>
             <br/>
-            <div class="row">
+            <div class="row margin-left-table">
                 <table>
                     <caption class="title-table">Materiais</caption>
                     <thead>
@@ -85,16 +91,20 @@
                     </thead>
                     <tbody>
                     <tr th:each="material, itemStat : *{material}">
-                        <td><input th:field="*{material[__${itemStat.index}__].codigo}"/></td>
-                        <td><input th:field="*{material[__${itemStat.index}__].descricao}"/></td>
+                        <td class="padding-right padding-bottom"><input
+                                th:field="*{material[__${itemStat.index}__].codigo}" class="form-control"/></td>
+                        <td class="padding-right padding-bottom"><input
+                                th:field="*{material[__${itemStat.index}__].descricao}" class="form-control"/></td>
                         <input type="checkbox" name="validado" class="hide"
-                                   th:field="*{material[__${itemStat.index}__].validado}"/>
-                        <td>
-                            <button type="button" class="btn btn-default remover-material"></span> Remover</button>
+                               th:field="*{material[__${itemStat.index}__].validado}"/>
+                        <td class="padding-bottom">
+                            <button type="button" class="btn btn-default remover-material">
+                                <span class="glyphicon glyphicon-trash"></span></button>
                         </td>
-                        <td>
+                        <td class="padding-bottom">
                             <button type="button" class="btn btn-default"
-                                    data-toggle="modal" data-target="#modal-adicionar-material">Adicionar
+                                    data-toggle="modal" data-target="#modal-adicionar-material">
+                                <span class="glyphicon glyphicon-plus"></span>
                             </button>
                         </td>
                     </tr>
@@ -106,7 +116,7 @@
                 <a th:href="@{/cirurgias}" class="btn btn-default" role="button">
                     Voltar
                 </a>
-                <button type="submit" class="btn btn-primary"></span> Salvar</button>
+                <button type="submit" class="btn btn-primary"></span> Atualizar</button>
             </div>
 
         </form>
@@ -159,7 +169,7 @@
                            placeholder="4">
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" data-dismiss="modal">
+                    <button class="btn btn-default" data-dismiss="modal">
                         Fechar
                     </button>
                     <button class="btn btn-primary" id="botao-adicionar-equipamento" data-dismiss="modal">
