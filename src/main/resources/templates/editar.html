@@ -13,9 +13,6 @@
     </div>
     <div class="container" id="dados_cirurgia">
         <form th:action="@{/atualizar/edicao}" th:object="${cirurgia}" method="post">
-
-
-            <h4 class="text-center">Cirurgia</h4>
             <div class="row">
                 <div class="col-md-2 mb-2">
                     ID <input th:value="${cirurgia.id}" name="id" class="form-control" type="text" readonly>
@@ -24,7 +21,7 @@
                     Sala <input th:value="${cirurgia.sala}" name="sala" class="form-control" type="text"
                                 readonly>
                 </div>
-                <div class="input-group col-md-6 mb-6">
+                <div class="col-md-6 mb-6">
                     Nome <input type="text" th:value="${cirurgia.descricao}" name="descricao"
                                 class="form-control"
                                 placeholder="Nome da Cirurgia">

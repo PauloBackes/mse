@@ -27,51 +27,53 @@
     <br/>
 
     <th:block th:if="${listaCirurgias != null}">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th> Id</th>
-                <th> Nome</th>
-                <th> Sala</th>
-                <th> Data e Hora de inicio</th>
-                <th> Ações</th>
-            </tr>
-            </thead>
-            <tbody>
-            <th:block th:each="cirurgia: ${listaCirurgias}">
-                <th:block th:if="${cirurgia.todosItensConferidos}">
-                    <tr class="success">
-                </th:block>
-                <th:block th:unless="${cirurgia.todosItensConferidos}">
-                    <tr class="warning">
-                </th:block>
-
-                <td th:text="${cirurgia.getId}"/>
-                <td th:text="${cirurgia.descricao}"/>
-                <td th:text="${cirurgia.sala}"/>
-                <td th:text="${cirurgia.dataInicio} + ' ' + ${cirurgia.horaInicio}"/>
-                <td>
-                    <a th:href="@{/editar/cirurgia?id={id} (id=${cirurgia.getId})}" class="btn btn-default"
-                       role="button">Editar
-                        <span class="glyphicon glyphicon-th-list"></span>
-                    </a>
-                    <a th:href="@{/validar/cirurgia?id={id} (id=${cirurgia.getId})}" class="btn btn-default"
-                       role="button">Validar
-                        <span class="glyphicon glyphicon-th-list"></span>
-                    </a>
-                    <a href="#" class="btn btn-default" role="button" id="removerEquipamento">Excluir
-                        <span class="glyphicon glyphicon-th-list"></span>
-                    </a>
-                    <a th:href="@{/relatorio/cirurgia?id={id} (id=${cirurgia.getId})}"
-                       target="_blank"
-                       class="btn btn-default" role="button">Relatorio
-                        <span class="glyphicon glyphicon-th-list"></span>
-                    </a>
-                </td>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th> Id</th>
+                    <th> Nome</th>
+                    <th> Sala</th>
+                    <th> Data e Hora de inicio</th>
+                    <th> Ações</th>
                 </tr>
-            </th:block>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <th:block th:each="cirurgia: ${listaCirurgias}">
+                    <th:block th:if="${cirurgia.todosItensConferidos}">
+                        <tr class="success">
+                    </th:block>
+                    <th:block th:unless="${cirurgia.todosItensConferidos}">
+                        <tr class="warning">
+                    </th:block>
+
+                    <td th:text="${cirurgia.getId}"/>
+                    <td th:text="${cirurgia.descricao}"/>
+                    <td th:text="${cirurgia.sala}"/>
+                    <td th:text="${cirurgia.dataInicio} + ' ' + ${cirurgia.horaInicio}"/>
+                    <td>
+                        <a th:href="@{/editar/cirurgia?id={id} (id=${cirurgia.getId})}" class="btn btn-default"
+                           role="button">Editar
+                            <span class="glyphicon glyphicon-th-list"></span>
+                        </a>
+                        <a th:href="@{/validar/cirurgia?id={id} (id=${cirurgia.getId})}" class="btn btn-default"
+                           role="button">Validar
+                            <span class="glyphicon glyphicon-th-list"></span>
+                        </a>
+                        <a href="#" class="btn btn-default" role="button" id="removerEquipamento">Excluir
+                            <span class="glyphicon glyphicon-th-list"></span>
+                        </a>
+                        <a th:href="@{/relatorio/cirurgia?id={id} (id=${cirurgia.getId})}"
+                           target="_blank"
+                           class="btn btn-default" role="button">Relatorio
+                            <span class="glyphicon glyphicon-th-list"></span>
+                        </a>
+                    </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
     </th:block>
     <th:block th:if="${listaCirurgias == null}">
         <h3>Nenhum resultado encontrado</h3>
