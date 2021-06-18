@@ -23,6 +23,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -69,20 +70,26 @@ public class RelatorioService {
         Table tabela = new Table(UnitValue.createPercentArray(new float[]{17, 17}));
         tabela.setWidth(UnitValue.createPercentValue(100));
 
-        var celula = celulaSemBorda("Cirurgia", cirurgia.getDescricao(), TextAlignment.LEFT);
+        var celula = celulaSemBorda("Procedimento", cirurgia.getDescricao(), TextAlignment.LEFT);
         tabela.addCell(celula);
 
-        celula = celulaSemBorda("Sala", cirurgia.getSala(), TextAlignment.RIGHT);
+        celula = celulaSemBorda("Id cirurgia", cirurgia.getId().toString(), TextAlignment.RIGHT);
         tabela.addCell(celula);
 
         celula = celulaSemBorda("Horário previsto de início", cirurgia.getHoraInicio(), TextAlignment.LEFT);
         tabela.addCell(celula);
 
+        celula = celulaSemBorda("Sala", cirurgia.getSala(), TextAlignment.RIGHT);
+        tabela.addCell(celula);
+
+        celula = celulaSemBorda("Horário previsto de término",
+                Objects.isNull(cirurgia.getHoraTermino()) ? "Não definido" : cirurgia.getHoraTermino(),
+                TextAlignment.LEFT);
+        tabela.addCell(celula);
+
         celula = celulaSemBorda("Dia", cirurgia.getDataInicio(), TextAlignment.RIGHT);
         tabela.addCell(celula);
 
-        celula = celulaSemBorda("Horário previsto de término", cirurgia.getHoraTermino(), TextAlignment.LEFT);
-        tabela.addCell(celula);
         return tabela;
     }
 
