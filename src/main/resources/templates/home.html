@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<!-- Header -->
+<head th:insert="fragments/generico.html :: cabecalho">
+
+<body>
+<!-- Navegação -->
+<nav th:replace="fragments/generico.html :: menu"></nav>
+
+<div class="container">
+    <div class="page-header">
+        <h3>Próximas Cirurgias</h3>
+        <div>
+            <p> Prepare-se para sua próxima cirurgia.</p>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-4" th:each="cirurgia: ${listaCirurgias}">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3 th:text="${cirurgia.descricao}"/>
+                        <p th:text="${cirurgia.dataInicio} + ' ' + ${cirurgia.horaInicio}"/>
+                        <p><a th:href="@{/validar/cirurgia?id={id} (id=${cirurgia.getId})}" class="btn btn-primary"
+                              role="button">Validar informações</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<footer th:replace="fragments/generico.html :: rodape"></footer>
+</body>
+</html>

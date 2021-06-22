@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<!-- Header -->
+<head th:insert="fragments/generico.html :: cabecalho">
+
+<body class="background-error">
+<div class="container">
+    <div class="page-header center-div margin-top">
+        <h1>Ocorreu um erro durante sua requisição</h1>
+        <img th:src="@{/images/erro.png}" class="img-responsive image-sad-face" alt="rosto triste"/>
+        <a th:href="@{/cirurgias}" class="btn btn-danger btn-lg"
+           role="button">Voltar
+        </a>
+    </div>
+</div>
+
+
+</body>
+<footer th:replace="fragments/generico.html :: rodape"></footer>
+</body>
+</html>

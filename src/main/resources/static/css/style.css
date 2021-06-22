@@ -1,0 +1,44 @@
+.hide {
+    display: none;
+}
+
+.pull-right {
+    float: right !important;
+}
+
+.title-table {
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+}
+
+.padding-right {
+    padding-right: 10px;
+}
+
+.padding-bottom {
+    padding-bottom: 5px;
+}
+
+.margin-left-table {
+    margin-left: 4px;
+}
+
+.center-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.margin-top {
+    margin-top: 100px;
+}
+.image-sad-face {
+    height: 200px;
+}
+
+.background-error {
+    background-color: antiquewhite;
+}
