@@ -12,7 +12,7 @@
         <h1>Edição de Cirurgia</h1>
     </div>
     <div class="container" id="dados_cirurgia">
-        <form th:action="@{/atualizar/edicao}" th:object="${cirurgia}" method="post">
+        <form th:action="@{/atualizar/cirurgia}" th:object="${cirurgia}" method="post">
             <div class="row">
                 <div class="col-md-2 mb-2">
                     ID <input th:value="${cirurgia.id}" name="id" class="form-control" type="text" readonly>

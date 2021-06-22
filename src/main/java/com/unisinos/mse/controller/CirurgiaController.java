@@ -48,10 +48,9 @@ public class CirurgiaController {
     }
 
     @RequestMapping(value = "/cirurgias", method = RequestMethod.GET)
-    public ModelAndView telaExemplo2() {
+    public ModelAndView telaListagemCirurgia() {
         var cirurgias = cirurgiaFacade.buscarTodasCirurgias();
         ModelAndView mv = new ModelAndView("cirurgias");
-        mv.addObject("titulo", "Sai do meu colo, bicho!");
         mv.addObject("listaCirurgias", cirurgias);
         mv.addObject("pesquisa", Pesquisa.builder().build());
         return mv;
@@ -79,7 +78,7 @@ public class CirurgiaController {
         return mv;
     }
 
-    @RequestMapping(value = "/atualizar/cirurgia", method = RequestMethod.POST)
+    @RequestMapping(value = "/atualizar/instrumentos", method = RequestMethod.POST)
     public ModelAndView atualizarInstrumentosValidadosCirurgia(@ModelAttribute Cirurgia cirurgia,
                                                                @RequestParam(value = "equipamentosSelecionados", required = false) String[] equipamentosSelecionados,
                                                                @RequestParam(value = "materiaisSelecionados", required = false) String[] materiaisSelecionados,
@@ -134,8 +133,7 @@ public class CirurgiaController {
         return mv;
     }
 
-    //TODO trocar para atualizar/cirurgia
-    @RequestMapping(value = "/atualizar/edicao", method = RequestMethod.POST)
+    @RequestMapping(value = "/atualizar/cirurgia", method = RequestMethod.POST)
     public ModelAndView atualizarCirurgia(@ModelAttribute Cirurgia cirurgia,
                                           RedirectAttributes redirectAttributes) {
 
