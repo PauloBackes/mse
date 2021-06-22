@@ -23,3 +23,22 @@
 .margin-left-table {
     margin-left: 4px;
 }
+
+.center-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.margin-top {
+    margin-top: 100px;
+}
+.image-sad-face {
+    height: 200px;
+}
+
+.background-error {
+    background-color: antiquewhite;
+}
