@@ -9,6 +9,7 @@ import com.unisinos.mse.service.CirurgiaService;
 import com.unisinos.mse.service.GeradorSequenceService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -114,20 +115,33 @@ public class CirurgiaFacade {
 
 
     public Cirurgia removerItem(RemoverItem removerItem) {
+        var cirurgia = cirurgiaService.buscarCirurgiaPeloId(removerItem.getIdCirurgia());
+
         if (("Equipamento").equals(removerItem.getTipoItem())) {
-            var cirurgia = cirurgiaService.buscarCirurgiaPeloId(removerItem.getIdCirurgia());
-            cirurgia.setEquipamento(cirurgia.getEquipamento().stream()
-                    .filter(equipamento -> !equipamento.getCodigo().equals(removerItem.getCodigoItem()))
-                    .collect(Collectors.toList()));
+            if (ObjectUtils.isEmpty(removerItem.getCodigoItem())) {
+                cirurgia.setEquipamento(cirurgia.getEquipamento().stream()
+                        .filter(equipamento -> !ObjectUtils.isEmpty(equipamento.getCodigo()))
+                        .collect(Collectors.toList()));
+
+            } else {
+                cirurgia.setEquipamento(cirurgia.getEquipamento().stream()
+                        .filter(equipamento -> !equipamento.getCodigo().equals(removerItem.getCodigoItem()))
+                        .collect(Collectors.toList()));
+            }
 
             return cirurgiaService.atualizarCirurgia(CirurgiaMapper.mapToCirurgiaEntity(cirurgia));
 
         } else if (("Material").equals(removerItem.getTipoItem())) {
-            var cirurgia = cirurgiaService.buscarCirurgiaPeloId(removerItem.getIdCirurgia());
-            cirurgia.setMaterial(cirurgia.getMaterial().stream()
-                    .filter(material -> !material.getCodigo().equals(removerItem.getCodigoItem()))
-                    .collect(Collectors.toList()));
+            if (ObjectUtils.isEmpty(removerItem.getCodigoItem())) {
+                cirurgia.setMaterial(cirurgia.getMaterial().stream()
+                        .filter(material -> !ObjectUtils.isEmpty(material.getCodigo()))
+                        .collect(Collectors.toList()));
 
+            } else {
+                cirurgia.setMaterial(cirurgia.getMaterial().stream()
+                        .filter(material -> !material.getCodigo().equals(removerItem.getCodigoItem()))
+                        .collect(Collectors.toList()));
+            }
             return cirurgiaService.atualizarCirurgia(CirurgiaMapper.mapToCirurgiaEntity(cirurgia));
         }
         return null;
