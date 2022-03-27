@@ -11,6 +11,10 @@ import java.util.List;
 
 @Repository
 public interface CirurgiaRepository extends MongoRepository<CirurgiaEntity, Integer> {
+    /*
+    * Onde se localiza apenas as chamadas ao banco.
+    * Tratamento das respostas é função do service
+    * */
     CirurgiaEntity findCirurgiaById(Integer id);
 
     CirurgiaEntity save(CirurgiaEntity cirurgiaEntity);

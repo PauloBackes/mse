@@ -21,7 +21,7 @@ public class CirurgiaFacade {
     CirurgiaService cirurgiaService;
     GeradorSequenceService geradorSequenceService;
 
-    public Cirurgia buscarCirurgiaPeloId(Integer id) {
+    /*public Cirurgia buscarCirurgiaPeloId(Integer id) {
         return cirurgiaService.buscarCirurgiaPeloId(id);
     }
 
@@ -181,5 +181,5 @@ public class CirurgiaFacade {
             return cirurgiaService.atualizarCirurgia(CirurgiaMapper.mapToCirurgiaEntity(cirurgia));
         }
         return null;
-    }
+    }*/
 }

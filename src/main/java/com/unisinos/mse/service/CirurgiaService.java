@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +21,37 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class CirurgiaService {
 
+    /*
+    * Essa camada de service, é a camada que representa o model do MVC
+    * É onde a regra de negócio está presente
+    *
+    * */
     CirurgiaRepository cirurgiaRepository;
+    GeradorSequenceService geradorSequenceService;
+
+    /*private void insertTest() {
+        var cirurgia = CirurgiaEntity.builder()
+                .id(geradorSequenceService.getSequence("cirurgia_sequence"))
+                .ativo(true)
+                .descricao("Cirugia abdominal")
+                .sala("204A")
+                .dataInicio(LocalDateTime.of(2022, 3, 27, 1, 0))
+                .dataFim(LocalDateTime.of(2022, 3, 27, 2, 0))
+                .equipamento(List.of(EquipamentoEntity.builder()
+                        .descricao("Agulha")
+                        .patrimonio("teste")
+                        .codigo("12A")
+                        .validado(true)
+                        .build()))
+                .material(List.of(MaterialEntity.builder()
+                        .descricao("Algodão")
+                        .codigo("123E")
+                        .quantidade(2)
+                        .validado(true)
+                        .build()))
+                .build();
+        cirurgiaRepository.save(cirurgia);
+    }*/
 
     public List<Cirurgia> buscarProximasCirurgias() {
         Sort sort = Sort.by(Sort.Direction.ASC, "dataInicio");
@@ -37,7 +68,7 @@ public class CirurgiaService {
         return CirurgiaMapper.mapToCirurgiaList(cirurgias);
     }
 
-    public List<Cirurgia> buscarTodasCirurgias() {
+    /*public List<Cirurgia> buscarTodasCirurgias() {
         Sort sort = Sort.by(Sort.Direction.DESC, "dataInicio");
         PageRequest request = PageRequest.of(0, 2, sort);
         return CirurgiaMapper.mapToCirurgiaList(cirurgiaRepository.findAllByAtivo(Boolean.TRUE, sort));
@@ -102,6 +133,6 @@ public class CirurgiaService {
     public Cirurgia atualizarCirurgia(CirurgiaEntity cirurgiaEntity) {
         return CirurgiaMapper.mapToCirurgia(cirurgiaRepository.save(cirurgiaEntity));
     }
-
+*/
 
 }

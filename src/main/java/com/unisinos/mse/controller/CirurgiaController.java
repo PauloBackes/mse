@@ -1,38 +1,24 @@
 package com.unisinos.mse.controller;
 
-import com.unisinos.mse.facade.CirurgiaFacade;
 import com.unisinos.mse.facade.RelatorioFacade;
-import com.unisinos.mse.model.AdicionarItem;
-import com.unisinos.mse.model.Cirurgia;
 import com.unisinos.mse.model.Pesquisa;
-import com.unisinos.mse.model.RemoverItem;
+import com.unisinos.mse.service.CirurgiaService;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @AllArgsConstructor
 @Log
 public class CirurgiaController {
-    RelatorioFacade relatorioFacade;
-    CirurgiaFacade cirurgiaFacade;
+    //RelatorioFacade relatorioFacade;
+    CirurgiaService cirurgiaService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView homePage() {
-        var cirurgias = cirurgiaFacade.buscarProximasCirurgias();
+        var cirurgias = cirurgiaService.buscarProximasCirurgias();
 
         ModelAndView mv = new ModelAndView("home");
         mv.addObject("titulo", "Sai do meu colo, bicho!");
@@ -41,7 +27,7 @@ public class CirurgiaController {
         return mv;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+  /*  @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView telaLogin() {
         ModelAndView mv = new ModelAndView("login");
         return mv;
@@ -154,5 +140,5 @@ public class CirurgiaController {
     public @ResponseBody
     Cirurgia adicionarItemDaCirurgia(@ModelAttribute AdicionarItem adicionarItem) {
         return cirurgiaFacade.adicionarItem(adicionarItem);
-    }
+    }*/
 }

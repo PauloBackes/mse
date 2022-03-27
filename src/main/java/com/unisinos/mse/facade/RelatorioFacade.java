@@ -13,8 +13,8 @@ public class RelatorioFacade {
     private RelatorioService relatorioService;
     private CirurgiaFacade cirurgiaFacade;
 
-    public File gerarRelatorioCirurgia(Integer idCirurgia) {
+    /*public File gerarRelatorioCirurgia(Integer idCirurgia) {
         var cirurgia = cirurgiaFacade.buscarCirurgiaPeloId(idCirurgia);
         return relatorioService.gerarRelatorioCirurgia(cirurgia);
-    }
+    }*/
 }
